@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISafetyVer2", "ISafetyVer2\ISafetyVer2.csproj", "{BD945F1C-EF82-487F-A99A-F77A62F95DFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD945F1C-EF82-487F-A99A-F77A62F95DFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD945F1C-EF82-487F-A99A-F77A62F95DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD945F1C-EF82-487F-A99A-F77A62F95DFD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BD945F1C-EF82-487F-A99A-F77A62F95DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD945F1C-EF82-487F-A99A-F77A62F95DFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD945F1C-EF82-487F-A99A-F77A62F95DFD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5B6D8AF-B94D-45B1-8075-9E6D6EC4A45C}
+	EndGlobalSection
+EndGlobal

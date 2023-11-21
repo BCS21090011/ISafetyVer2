@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ISafetyVer2.Views.MainPage"
+             Title="MainPage"
+             NavigationPage.HasNavigationBar="false">
+    
+    <ScrollView>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Center" Padding="20,20,20,0">
+            <Label Text="Welcome to ISafety"    HorizontalOptions="Start" FontSize="Large" 
+               FontAttributes="Bold" Margin="5,10,0,20" FontFamily="Lobster"/>
+
+            <Grid x:Name="SwipeArea" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150" />
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="100"/>
+
+
+
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition />
+
+                </Grid.ColumnDefinitions>
+
+
+                <Button Grid.Column="0"  Grid.RowSpan="2" BorderColor="Black" BorderWidth="1"
+                    CornerRadius="30" 
+                    BackgroundColor="White"
+                    Clicked="QuickReportBtnOnClick"/>
+
+
+
+                <Button Grid.Column="1" BorderColor="Black" BorderWidth="1"
+                    CornerRadius="30" 
+                    BackgroundColor="White" Margin="10,0,0,0"
+                    Clicked="CategoriesBtnOnClick"/>
+
+
+                <Button Grid.Column="1" Grid.Row="1" BorderColor="Black" BorderWidth="1"
+                    CornerRadius="30" 
+                    BackgroundColor="White" Margin="10,10,0,0"
+                    Clicked="ChatContactsBtnOnClick"/>
+
+
+                <Label Grid.Row="1" Text="Quick Report" HorizontalOptions="Center"
+                   Margin="0,10,0,0" FontSize="20"  FontAttributes="Bold" FontFamily="Lobster"/>
+                <Label Grid.Row="1" Text="For non-emergency 
+                  only" HorizontalOptions="Center"
+                 Margin="18,50,0,0" FontSize="12"  FontAttributes="Bold"/>
+                <Image Grid.Row="0" Source="report.png" HorizontalOptions="Center" 
+               HeightRequest="150" WidthRequest="150" Margin="0,0,0,0"/>
+
+
+                <Label Grid.Column="1" Text="Safety &#10;Tips " HorizontalOptions="End"
+                   VerticalOptions="Center" Margin="0,0,30,40" FontSize="20"  FontAttributes="Bold"
+                   FontFamily="Lobster"/>
+                <Label Grid.Column="1" Text="For education &#10;and awareness" HorizontalOptions="End"
+                 Margin="0,70,10,0" FontSize="12"  FontAttributes="Bold" VerticalOptions="Center"/>
+                <Image Grid.Column="1" Source="tips.png" HorizontalOptions="Start" 
+               HeightRequest="160" WidthRequest="70" Margin="20,0,0,0"/>
+
+
+
+                <Label Grid.Row="1" Grid.Column="1" Text=" Chats" HorizontalOptions="Center" 
+                   VerticalOptions="Center" Margin="50,0,30,40" FontSize="20"  FontAttributes="Bold" FontFamily="Lobster"/>
+
+                <Label Grid.Row="1" Grid.Column="1" Text="Communicate with&#10;Authorities and local&#10;community group" HorizontalOptions="End"
+                 Margin="10,30,0,0" FontSize="12"  FontAttributes="Bold" VerticalOptions="Center" />
+                <Image Grid.Column="1" Grid.Row="1" Source="chats.png" HorizontalOptions="Start" 
+               HeightRequest="100" WidthRequest="50" Margin="20,0,0,0"/>
+
+
+                <Label Grid.Row="2" Grid.ColumnSpan="2" Text="Safety Issues Nearby"  TextColor="black" 
+            HorizontalOptions="Start" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0" FontFamily="Lobster"/>
+
+
+
+
+                <Frame Grid.Row="4" Grid.ColumnSpan="2"
+   HeightRequest="75" CornerRadius="50" BorderColor="Black"
+   
+   Margin="0,0,0,0"/>
+
+                <Label Grid.Row="4" Grid.ColumnSpan="2" 
+   Text="Swipe left for emergency" FontSize="20" FontAttributes="Bold"
+   Margin="70,35,0,0"/>
+
+                <Grid x:Name="OverlayGrid" IsVisible="False" BackgroundColor="#C0000000" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label x:Name="CountdownLabel" Text="" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
+                </Grid>
+
+                <ImageButton x:Name="SwipeButton" Source="sos.png"  WidthRequest="70" HeightRequest="70" CornerRadius="40" 
+                        Grid.ColumnSpan="2" Margin="0,0,0,0" Grid.Row="4" HorizontalOptions="Start"  />
+
+            </Grid>
+
+
+
+        </StackLayout>
+
+    </ScrollView>
+</ContentPage>
