@@ -18,10 +18,10 @@ public partial class MainPage : ContentPage
 
 	private void CategoriesBtnOnClick(object obj, EventArgs e)
 	{
-		// Go to CategoriesPage (or Safetytips1 in original).
-	}
+        Navigation.PushAsync(new SafetyTipsCategoriesPage());   // Safetytips1 in original.
+    }
 
-	private void QuickReportBtnOnClick(object obj, EventArgs e)
+    private void QuickReportBtnOnClick(object obj, EventArgs e)
 	{
 		// Go to QuickReportPage (or QuickReport in original).
 	}

@@ -9,12 +9,12 @@ public partial class Community : ContentPage
 
 	private void SubCatBtnOnClick(object sender, EventArgs e)
 	{
-		// Go to SubCategoryPage
+		Navigation.PushAsync(new SubCategoryPage());
 	}
 
 	private void CategoryBtnOnClick(object sender, EventArgs e)
 	{
-		// Go to CategoryPage
+		Navigation.PushAsync(new CategoryPage());
 	}
 
 	private void QuickReportBtnOnClick(object sender, EventArgs e)

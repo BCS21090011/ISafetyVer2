@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ISafetyVer2.Models
 {
-    internal class SubCategory
+    public class SubCategory
     {
         public string SubCatID { get; set; }
         public string CategoryID { get; set; }

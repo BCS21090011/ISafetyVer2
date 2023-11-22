@@ -42,7 +42,7 @@ namespace ISafetyVer2.Services
         // Get all Categories:
         public async Task<List<Category>> GetAllCategories()
         {
-            return (await firebase.Child("categories").OnceAsync<Category>()).Select(item => new Category
+            return (await firebase.Child("Categories").OnceAsync<Category>()).Select(item => new Category
             {
                 CategoryID = item.Key,
                 CategoryName = item.Object.CategoryName
@@ -71,6 +71,11 @@ namespace ISafetyVer2.Services
         }
 
         // Add QuickReport:
+        public async Task<string> AddQuickReport(QuickReport quickReport)
+        {
+            FirebaseObject<QuickReport> result = await firebase.Child("QuickReports").PostAsync(quickReport);
+            return result.Key;
+        }
 
         // Get all QuickReports with SubCategories and Categories:
     }
