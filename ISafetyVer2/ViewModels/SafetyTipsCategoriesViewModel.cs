@@ -9,13 +9,13 @@ using System.Windows.Input;
 using ISafetyVer2.Models;
 using ISafetyVer2.Services;
 using ISafetyVer2.Views;
-using System.Timers;
+// using System.Timers;
 
 namespace ISafetyVer2.ViewModels
 {
     public class SafetyTipsCategoriesViewModel : INotifyPropertyChanged
     {
-        private System.Timers.Timer _refreshTimer;
+        // private System.Timers.Timer _refreshTimer;
 
         public event PropertyChangedEventHandler PropertyChanged;
         private INavigation _navigation;
@@ -42,8 +42,11 @@ namespace ISafetyVer2.ViewModels
             CategoryOnClicked = new Command<string>(OnCategoryClicked);
             _navigation = navigation;
 
-            Categories = new ObservableCollection<Category>();
-            InitializeCategoriesDataAsync();
+            // Realtime:
+            IDisposable obserable = new FirebaseHelper().firebase
+                .Child("Categories")
+                .AsObservable<Category>()
+                .Subscribe(cat => InitializeCategoriesDataAsync());
 
             /*
             // Update Categories at given time interval, not a good way but it can keep it sort of up to date.
@@ -54,15 +57,18 @@ namespace ISafetyVer2.ViewModels
             */
         }
 
+        /*
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             Categories = new ObservableCollection<Category>();
             InitializeCategoriesDataAsync();
         }
+        */
 
         private async Task InitializeCategoriesDataAsync()
         {
             List<Category> categories = await new FirebaseHelper().GetAllCategories();
+            Categories = new ObservableCollection<Category>();
             foreach (Category category in categories)
             {
                 Categories.Add(category);

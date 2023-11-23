@@ -15,6 +15,5 @@ namespace ISafetyVer2.Models
         public string QRDescription { get; set; }
         public decimal Latitude {  get; set; }
         public decimal Longitude { get; set; }
-        public string QRAddress { get; set; }
     }
 }

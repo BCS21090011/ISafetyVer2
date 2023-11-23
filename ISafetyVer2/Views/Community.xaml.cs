@@ -19,6 +19,6 @@ public partial class Community : ContentPage
 
 	private void QuickReportBtnOnClick(object sender, EventArgs e)
 	{
-		// Go to QuickReportPage
+		Navigation.PushAsync(new QuickReportPage());	// Quickreport in original.
 	}
 }

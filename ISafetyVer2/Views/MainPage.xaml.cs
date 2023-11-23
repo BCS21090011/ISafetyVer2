@@ -23,7 +23,7 @@ public partial class MainPage : ContentPage
 
     private void QuickReportBtnOnClick(object obj, EventArgs e)
 	{
-		// Go to QuickReportPage (or QuickReport in original).
+        Navigation.PushAsync(new QuickReportPage());    // Quickreport in original.
 	}
 
 	private void ChatContactsBtnOnClick(object obj, EventArgs e)

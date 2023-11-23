@@ -11,7 +11,7 @@ namespace ISafetyVer2.Services
 {
     internal class FirebaseHelper
     {
-        private FirebaseClient firebase = new FirebaseClient(baseUrl: Settings.FireBaseDatabaseURL);
+        public FirebaseClient firebase = new FirebaseClient(baseUrl: Settings.FireBaseDatabaseURL);
 
         // Add User:
         public async Task<string> AddUser(DBUser user)
@@ -56,11 +56,43 @@ namespace ISafetyVer2.Services
             return result.Key;
         }
 
+        // Get all SubCategories:
+        public async Task<List<SubCategory>> GetAllSubCategories()
+        {
+            return (await firebase.Child("Subcategories").OnceAsync<SubCategory>()).Select(item => new SubCategory
+            {
+                SubCatID = item.Key,
+                CategoryID = item.Object.CategoryID,
+                SubCatName = item.Object.SubCatName,
+                AreaRadius = item.Object.AreaRadius,
+                DangerLvl = item.Object.DangerLvl
+            }).ToList();
+        }
+
         // Get SubCategory by CategoryID:
+        /*
         // This will download all subcategories, might need to change it later (maybe using similar approach with GetDBUserByUserID()).
         public async Task<List<SubCategory>> GetSubCategoriesByCategoryID(string categoryID)
         {
             return (await firebase.Child("Subcategories").OnceAsync<SubCategory>()).Where(item => item.Object.CategoryID == categoryID).Select(item => new SubCategory
+            {
+                SubCatID = item.Key,
+                CategoryID = item.Object.CategoryID,
+                SubCatName = item.Object.SubCatName,
+                AreaRadius = item.Object.AreaRadius,
+                DangerLvl = item.Object.DangerLvl
+            }).ToList();
+        }
+        */
+        public async Task<List<SubCategory>> GetSubCategoriesByCategoryID(string categoryID)
+        {
+            IReadOnlyCollection<FirebaseObject<SubCategory>> result = await firebase
+                .Child("Subcategories")
+                .OrderBy("CategoryID")
+                .EqualTo(categoryID)
+                .OnceAsync<SubCategory>();
+
+            return result.Select(item => new SubCategory
             {
                 SubCatID = item.Key,
                 CategoryID = item.Object.CategoryID,
