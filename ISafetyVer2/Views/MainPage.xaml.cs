@@ -16,6 +16,7 @@ public partial class MainPage : ContentPage
         BindingContext = this;
     }
 
+
 	private void CategoriesBtnOnClick(object obj, EventArgs e)
 	{
         Navigation.PushAsync(new SafetyTipsCategoriesPage());   // Safetytips1 in original.

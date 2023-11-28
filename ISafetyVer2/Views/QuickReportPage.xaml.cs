@@ -20,4 +20,9 @@ public partial class QuickReportPage : ContentPage
 	{
 		await DisplayAlert("Alert", "SubmitBtn Clicked", "OK");
 	}
+
+    private void Backclick(object obj, EventArgs e)
+    {
+       Navigation.PopAsync();   // Safetytips1 in original.
+    }
 }

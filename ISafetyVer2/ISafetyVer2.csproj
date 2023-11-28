@@ -88,4 +88,9 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiAsset Include="Resources\AppIcon\appicon.svg" />
+	  <MauiAsset Include="Resources\AppIcon\appiconfg.svg" />
+	</ItemGroup>
+
 </Project>

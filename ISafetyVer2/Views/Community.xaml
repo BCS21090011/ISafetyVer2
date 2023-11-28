@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ISafetyVer2.Views.Community"
-             Title="Community">
+             Title="Community"
+             Shell.NavBarIsVisible="False">
 
-    <ScrollView>
+    <ScrollView BackgroundColor="WhiteSmoke">
         <StackLayout>
             <Grid Padding="20,20,20,0">
                 <Grid.RowDefinitions>
@@ -119,7 +120,7 @@
 
                 <Button Text="Subcat"  Grid.Row="6" Clicked="SubCatBtnOnClick" />
                 <Button Text="cat" Grid.Row="7"  Clicked="CategoryBtnOnClick" />
-                <Button Text="quick" Grid.Row="8"  Clicked="QuickReportBtnOnClick" />
+                
 
             </Grid>
         </StackLayout>
