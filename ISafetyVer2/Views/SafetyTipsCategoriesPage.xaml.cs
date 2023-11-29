@@ -10,4 +10,9 @@ public partial class SafetyTipsCategoriesPage : ContentPage
 
 		BindingContext = new SafetyTipsCategoriesViewModel(Navigation);
 	}
+
+    private void Backclickcatpage(object obj, EventArgs e)
+    {
+        Navigation.PopAsync();   // Safetytips1 in original.
+    }
 }

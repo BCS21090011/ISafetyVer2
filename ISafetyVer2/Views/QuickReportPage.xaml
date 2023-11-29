@@ -22,7 +22,7 @@
                 <RowDefinition Height="900" />
             </Grid.RowDefinitions>
 
-            <ImageButton Source="back.png" HeightRequest="25" 
+            <ImageButton Source="backwhite.png" HeightRequest="25" 
                          WidthRequest="25" HorizontalOptions="Start"
                          VerticalOptions="Start" Margin="20,15,0,0"
                          Clicked="Backclick" Grid.Row="0"/>
@@ -36,7 +36,7 @@
                            HorizontalOptions="CenterAndExpand" CornerRadius="20"
                            Margin="0,0,0,30"/>
             <Label Grid.Row="1" HorizontalOptions="Start"
-                   Text="Annonymouse?" TextColor="Black" FontSize="20"
+                   Text="Annonymouse?" TextColor="Black" FontSize="18"
                    FontFamily="Lobster" Margin="60,0,0,0" />
 
             <Button Grid.Row="1" HorizontalOptions="Center"

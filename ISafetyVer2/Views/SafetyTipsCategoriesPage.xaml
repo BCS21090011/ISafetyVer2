@@ -2,18 +2,61 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ISafetyVer2.Views.SafetyTipsCategoriesPage"
-             Title="SafetyTipsCategoriesPage">
+             Title="SafetyTipsCategoriesPage"
+             Shell.NavBarIsVisible="False">
 
-    <CollectionView ItemsSource="{Binding Categories}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Grid Padding="20" RowDefinitions="Auto" ColumnDefinitions="25,*,25,Auto">
-                    <Image Source="back.png" WidthRequest="25" HeightRequest="25"/>
-                    <Label Grid.Column="1" Text="{Binding CategoryName}" FontSize="20" FontAttributes="Bold"/>
-                    <Image Source="next.png" Grid.Column="2" WidthRequest="25" HeightRequest="25"/>
-                    <Button Grid.Column="3" Text="Go" Command="{Binding Path=BindingContext.CategoryOnClicked, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding CategoryID}" />
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <ScrollView >
+        <Grid>
+            <Grid.Background>
+                <LinearGradientBrush >
+                    <GradientStop Color="#f7b5ff"
+                          Offset="0.1" />
+                    <GradientStop Color="#ce6aff"
+                          Offset="0.2" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="900" />
+            </Grid.RowDefinitions>
+
+
+            <ImageButton Source="backwhite.png" HeightRequest="25" 
+                         WidthRequest="25" HorizontalOptions="Start"
+                         VerticalOptions="Center" Margin="20,15,0,0"
+                         Clicked="Backclickcatpage" Grid.Row="0"/>
+
+
+            <Label HorizontalOptions="Center"  VerticalOptions="Center" Margin="10,10,0,0"
+                   Text="Safety Tips" FontAttributes="Bold" FontFamily="Lobster"
+                   FontSize="25" TextColor="White" Grid.Row="0"/>
+            
+            <CollectionView ItemsSource="{Binding Categories}" Grid.Row="2" Margin="0,20,0,20">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Background="White" HeightRequest="100" WidthRequest="350"  Margin="10,10" BorderColor="White" Opacity="1">
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Label Grid.Column="0" Text="{Binding CategoryName}" FontSize="20" FontAttributes="Bold"
+                                     HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0"/>
+                                    <ImageButton Grid.Column="2" Source="next.png" WidthRequest="40" HeightRequest="25" HorizontalOptions="End"
+                                    Command="{Binding Path=BindingContext.CategoryOnClicked, 
+                                    Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding CategoryID}"/>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+           
+        </Grid>
+    </ScrollView>
 </ContentPage>
