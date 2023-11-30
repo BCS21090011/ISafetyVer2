@@ -8,6 +8,9 @@
         <Entry x:Name="SubCatNameEntry" Placeholder="Sub Category Name"/>
         <Entry x:Name="AreaRadiusEntry" Keyboard="Numeric" TextChanged="EntryEnsureInt" Placeholder="Area Radius"/>
         <Entry x:Name="DangerLvlEntry" Keyboard="Numeric" TextChanged="EntryEnsureInt" Placeholder="Danger Level"/>
+        <Editor x:Name="SafetyTipsDescriptionEditor" Placeholder="Enter Safety Tips Description" HeightRequest="100"/>
         <Button Text="Add SubCategory" Clicked="AddSubCategoryBtnOnClick"/>
+    
+    
     </StackLayout>
 </ContentPage>

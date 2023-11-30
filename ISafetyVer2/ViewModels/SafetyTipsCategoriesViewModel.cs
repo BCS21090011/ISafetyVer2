@@ -84,5 +84,6 @@ namespace ISafetyVer2.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        
     }
 }

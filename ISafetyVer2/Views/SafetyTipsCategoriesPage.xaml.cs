@@ -15,4 +15,6 @@ public partial class SafetyTipsCategoriesPage : ContentPage
     {
         Navigation.PopAsync();   // Safetytips1 in original.
     }
+
+
 }

@@ -7,15 +7,11 @@ public partial class Community : ContentPage
 		InitializeComponent();
 	}
 
-	private void SubCatBtnOnClick(object sender, EventArgs e)
-	{
-		Navigation.PushAsync(new SubCategoryPage());
-	}
-
-	private void CategoryBtnOnClick(object sender, EventArgs e)
-	{
-		Navigation.PushAsync(new CategoryPage());
-	}
-
 	
+    private void Adminclick(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new Admin());
+    }
+
+
 }

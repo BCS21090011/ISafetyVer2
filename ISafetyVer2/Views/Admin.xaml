@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ISafetyVer2.Views.Admin"
+             Title="Admin"
+             >
+
+    <ScrollView>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Center" Padding="20,20,20,0">
+           
+            <Label Text="Welcome to ISafety"    HorizontalOptions="Start" FontSize="Large"
+                   VerticalOptions="Start" FontAttributes="Bold" Margin="0,0,0,30" FontFamily="Lobster"/>
+            <Grid  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="200"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="175"/>
+                    <ColumnDefinition Width="175"/>
+                </Grid.ColumnDefinitions>
+                
+                
+                <!-- Reported Case-->
+                <Button  Grid.RowSpan="2"   CornerRadius="30"
+                         BorderColor="White" BorderWidth="1"
+                        Margin="0,0,10,20">
+                    <Button.Background>
+                        <LinearGradientBrush>
+
+                            <GradientStop Color="#ffc800"
+                          Offset="0.5" />
+                            <GradientStop Color="#ffaa41"
+                          Offset="0.9" />
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                
+                <!-- Post-->
+                <Button   Grid.Row="0" Grid.Column="1"  
+                        BorderColor="White" BorderWidth="1"
+                        Margin="0,0,0,20" CornerRadius="15">
+                    <Button.Background>
+                        <LinearGradientBrush>
+
+                            <GradientStop Color="#b2b3f7"
+                          Offset="0.2" />
+                            <GradientStop Color="#8695ff"
+                          Offset="0.7" />
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                
+                
+                <!-- Chat-->
+                <Button   Grid.Row="1" Grid.Column="1"  
+                        BorderColor="White" BorderWidth="1"
+                        Margin="0,0,0,20" CornerRadius="10">
+                    <Button.Background>
+                        <LinearGradientBrush>
+
+                            <GradientStop Color="#9dd48d"
+                          Offset="0.1" />
+                            <GradientStop Color="#9fec41"
+                          Offset="0.8" />
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <!-- SubCategory-->
+                <Button Grid.Row="3" Clicked="SubCatBtnOnClick"  Grid.Column="1"
+                        BorderColor="White" BorderWidth="1"
+                        Margin="0,0,0,0">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                            <GradientStop Color="#ffe386"
+                          Offset="0.3" />
+                            <GradientStop Color="#f1bb36"
+                          Offset="0.6" />
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+
+
+                <!-- Category-->
+                <Button  Grid.Row="3" Grid.Column="0" Clicked="CategoryBtnOnClick" 
+                       BorderColor="White" BorderWidth="1" Margin="0,0,15,0">
+                    <Button.Background>
+                        <LinearGradientBrush>
+
+                            <GradientStop Color="#ffe386"
+                          Offset="0.3" />
+                            <GradientStop Color="#f1bb36"
+                          Offset="0.6" />
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <!-- Report case-->
+                <Label Grid.RowSpan="2" Grid.Column="0" Text="Reported Case" HorizontalOptions="Center" VerticalOptions="End"
+                   Margin="0,0,5,50" FontSize="20"   TextColor="White"  FontAttributes="Bold" FontFamily="Lobster"
+                       />
+                <Image Grid.Row="0"  Grid.Column="0" Source="reportadmin.png" HorizontalOptions="Start" VerticalOptions="Start"
+               HeightRequest="150" WidthRequest="150" Margin="0,20,0,0" />
+
+                <!-- Post-->
+                <Label Grid.Row="0" Grid.Column="1" Text="Post" HorizontalOptions="Center" VerticalOptions="Center"
+                   Margin="70,0,0,20" FontSize="20"   TextColor="White"  FontAttributes="Bold" FontFamily="Lobster"
+                       />
+                <Image Grid.Row="0"  Grid.Column="1" Source="post.png" HorizontalOptions="Start" VerticalOptions="Center"
+               HeightRequest="75"  Margin="20,0,0,20" />
+
+
+                <!-- Chat-->
+                <Label Grid.Row="1" Grid.Column="1" Text="Chat" HorizontalOptions="Center" VerticalOptions="Center"
+                   Margin="70,0,0,20" FontSize="20"   TextColor="White"  FontAttributes="Bold" FontFamily="Lobster"
+                       />
+                <Image Grid.Row="1"  Grid.Column="1" Source="chats.png" HorizontalOptions="Start" VerticalOptions="Center"
+               HeightRequest="50" Margin="20,0,0,20" />
+
+                <!-- More-->
+                <Label Text="More functions"  Grid.Row="2"  HorizontalOptions="Start" FontSize="Large"
+                   VerticalOptions="Start" FontAttributes="Bold" Margin="0,10,0,0" FontFamily="Lobster"/>
+
+                <!-- Category-->
+                <Label Grid.Row="3" Grid.Column="0" Text="Add Category" HorizontalOptions="Center" VerticalOptions="Center"
+                   Margin="0,60,0,0" FontSize="20"   TextColor="White"  FontAttributes="Bold" FontFamily="Lobster"
+                       />
+                <Image Grid.Row="3"  Grid.Column="0" Source="category.png" HorizontalOptions="Center" VerticalOptions="Start"
+               HeightRequest="100"  Margin="0,20,0,0" />
+
+
+                <!-- SubCategory-->
+                <Label Grid.Row="3" Text="         Add&#10;Sub-Category" HorizontalOptions="Center" VerticalOptions="Center"
+                   Margin="0,80,0,0" FontSize="20"   TextColor="White"  
+                   FontAttributes="Bold" FontFamily="Lobster" Grid.Column="1"
+                       />
+                <Image Grid.Row="3" Source="category.png"  Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Start"
+               HeightRequest="100" Margin="0,20,0,0"/>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+    
+</ContentPage>

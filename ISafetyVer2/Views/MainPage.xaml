@@ -134,13 +134,31 @@
                     </Frame.Background>
                 </Frame>
 
-                <Label Grid.Row="4" Grid.ColumnSpan="2" Text="Swipe left for emergency" 
-                       FontSize="20" FontAttributes="Bold" Margin="70,35,0,0"/>
+                <Label Grid.Row="4" Grid.ColumnSpan="2" Text="Swipe right for emergency" 
+                       FontSize="20" FontAttributes="Bold" Margin="70,35,0,0" TextColor="White"/>
 
-                <Grid x:Name="OverlayGrid" IsVisible="False" BackgroundColor="#C0000000" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <Label x:Name="CountdownLabel" Text="" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
+                <Grid x:Name="OverlayGrid" IsVisible="False" HorizontalOptions="Center" VerticalOptions="Center" Grid.RowSpan="6" Grid.ColumnSpan="2">
+
+                    <Frame CornerRadius="30" Padding="20"
+           HorizontalOptions="Center" VerticalOptions="Center"
+           WidthRequest="300" HeightRequest="400"
+           BackgroundColor="White"  BorderColor="Black" />
+                    <Label x:Name="CountdownLabel" Text="" FontSize="100"
+               HorizontalOptions="Center" VerticalOptions="Center"
+               TextColor="IndianRed" Margin="0,80,0,0" />
+                    <Image Source="emergencycall.png"  HorizontalOptions="Center" VerticalOptions="Center"
+                           Margin="0,0,0,200" HeightRequest="100" WidthRequest="100"/>
+                    <Label  Text="You are having an emergency call" FontSize="14"
+               HorizontalOptions="Center" VerticalOptions="Center"
+               TextColor="Grey" Margin="0,0,0,90" />
+                    <Label  Text="Emergency call will be start in :" FontSize="18"
+               HorizontalOptions="Center" VerticalOptions="Center"
+               TextColor="Black" Margin="0,0,0,50" />
+                    <Label  Text="Cancel it by let go of your hand" FontSize="16"
+               HorizontalOptions="Center" VerticalOptions="End"
+               TextColor="Black" Margin="0,0,0,60" />
                 </Grid>
-
+                
                 <ImageButton x:Name="SwipeButton" Source="sos.png"  WidthRequest="70" HeightRequest="70" CornerRadius="40" 
                         Grid.ColumnSpan="2" Margin="0,0,0,0" Grid.Row="4" HorizontalOptions="Start"  />
 

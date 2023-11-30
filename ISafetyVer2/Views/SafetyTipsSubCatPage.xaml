@@ -2,11 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ISafetyVer2.Views.SafetyTipsSubCatPage"
-             Title="SafetyTipsSubCatPage">
+             Title="SafetyTipsSubCatPage"
+             Shell.NavBarIsVisible="False">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <ImageButton Source="back.png"  HeightRequest="30" WidthRequest="30" Clicked="Backclicksub"/>
+
+        <CollectionView x:Name="SubCategoriesListView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding SubCatName}" FontAttributes="Bold"/>
+                        <Label Text="{Binding SafetyTipsDescription}"/>
+                        <!-- Add other UI elements as needed -->
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
