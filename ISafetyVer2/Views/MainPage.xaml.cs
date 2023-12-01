@@ -37,24 +37,27 @@ public partial class MainPage : ContentPage
     System.Timers.Timer holdTimer;
 
     [Obsolete]
+    void SetupHoldTimer()
+    {
+        // Initialize the timer
+        holdTimer = new System.Timers.Timer(1000) { AutoReset = true }; // Set to tick every second
+        holdTimer.Elapsed += OnHoldTimerTicked;
+    }
+
+    [Obsolete]
+    void StartHoldTimer()
+    {
+        Device.BeginInvokeOnMainThread(() =>
+        {
+            CountdownLabel.Text = "10"; // Start countdown from 3 seconds
+            CountdownLabel.IsVisible = true;
+        });
+        holdTimer.Start();
+    }
+
+    [Obsolete]
     void OnPanUpdated(object sender, PanUpdatedEventArgs e)
     {
-        void SetupHoldTimer()
-        {
-            // Initialize the timer
-            holdTimer = new System.Timers.Timer(1000) { AutoReset = true }; // Set to tick every second
-            holdTimer.Elapsed += OnHoldTimerTicked;
-        }
-
-        void StartHoldTimer()
-        {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                CountdownLabel.Text = "3"; // Start countdown from 3 seconds
-                CountdownLabel.IsVisible = true;
-            });
-            holdTimer.Start();
-        }
         switch (e.StatusType)
         {
             case GestureStatus.Started:
@@ -110,7 +113,7 @@ public partial class MainPage : ContentPage
         {
             holdTimer.Stop();
             holdTimer.Dispose();
-            holdTimer = null; // Clear the timer
+            SetupHoldTimer();
         }
         Device.BeginInvokeOnMainThread(() =>
         {
