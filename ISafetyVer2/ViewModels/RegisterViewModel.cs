@@ -76,7 +76,8 @@ namespace ISafetyVer2.ViewModels
                     UserID = userID,
                     UserName = userName,
                     UserPhoneNumber = userPhoneNumber,
-                    UserEmail = userEmail
+                    UserEmail = userEmail,
+                    Role = "User"
                 };
 
                 string userDBID = await new FirebaseHelper().AddUser(userDB);

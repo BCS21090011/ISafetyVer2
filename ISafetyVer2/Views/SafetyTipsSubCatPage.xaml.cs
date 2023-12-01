@@ -8,7 +8,9 @@ public partial class SafetyTipsSubCatPage : ContentPage
 	{
 		InitializeComponent();
 		Say(categoryID);
-	}
+        InitializeSubCategoriesDataAsync(categoryID);
+
+    }
 
 	private async void Say(string id)
 	{

@@ -5,19 +5,31 @@ namespace ISafetyVer2.Views;
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class MainPage : ContentPage
 {
+    private string userRole;
 	public MainPage()
 	{
-		InitializeComponent();
+        InitializeComponent();
 
         var panGesture = new PanGestureRecognizer();
         panGesture.PanUpdated += OnPanUpdated;
         SwipeButton.GestureRecognizers.Add(panGesture);
-
+        
         BindingContext = this;
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
 
-	private void CategoriesBtnOnClick(object obj, EventArgs e)
+        userRole = Preferences.Get("UserRole", "Default");
+        
+        if (userRole == "Admin")
+        {
+            Navigation.PushAsync(new Admin());
+        }
+    }
+
+    private void CategoriesBtnOnClick(object obj, EventArgs e)
 	{
         Navigation.PushAsync(new SafetyTipsCategoriesPage());   // Safetytips1 in original.
     }
@@ -27,7 +39,7 @@ public partial class MainPage : ContentPage
         Navigation.PushAsync(new QuickReportPage());    // Quickreport in original.
 	}
 
-	private void ChatContactsBtnOnClick(object obj, EventArgs e)
+    private void ChatContactsBtnOnClick(object obj, EventArgs e)
 	{
 		// Go to ChatContacts (or Chat in original).
 	}

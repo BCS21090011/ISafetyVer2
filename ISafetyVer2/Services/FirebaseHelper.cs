@@ -65,7 +65,8 @@ namespace ISafetyVer2.Services
                 CategoryID = item.Object.CategoryID,
                 SubCatName = item.Object.SubCatName,
                 AreaRadius = item.Object.AreaRadius,
-                DangerLvl = item.Object.DangerLvl
+                DangerLvl = item.Object.DangerLvl,
+                SafetyTipsDescription = item.Object.SafetyTipsDescription
             }).ToList();
         }
 

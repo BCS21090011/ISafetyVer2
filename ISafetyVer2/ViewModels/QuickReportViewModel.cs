@@ -16,8 +16,24 @@ namespace ISafetyVer2.ViewModels
         private INavigation _navigation;
 
         // Properties to be binded:
+        private Category _selectedCategory;
         private ObservableCollection<Category> _categories;
+        private SubCategory _selectedSubCat;
         private ObservableCollection<SubCategory> _subCategories;
+
+        public Category SelectedCategory
+        {
+            get => _selectedCategory;
+            set
+            {
+                if (_selectedCategory != value)
+                {
+                    _selectedCategory = value;
+                    RaisePropertyChanged(nameof(SelectedCategory));
+                    InitializeSubCatDataAsync();
+                }
+            }
+        }
 
         public ObservableCollection<Category> Categories
         {
@@ -28,6 +44,19 @@ namespace ISafetyVer2.ViewModels
                 {
                     _categories = value;
                     RaisePropertyChanged(nameof(Categories));
+                }
+            }
+        }
+
+        public SubCategory SelectedSubCat
+        {
+            get => _selectedSubCat;
+            set
+            {
+                if (_selectedSubCat != value)
+                {
+                    _selectedSubCat = value;
+                    RaisePropertyChanged(nameof(SelectedSubCat));
                 }
             }
         }
@@ -78,7 +107,7 @@ namespace ISafetyVer2.ViewModels
             _navigation = navigation;
 
             // Realtime:
-            IDisposable observer = new FirebaseHelper().firebase
+            IDisposable observer1 = new FirebaseHelper().firebase
                 .Child("Categories")
                 .AsObservable<Category>()
                 .Subscribe(cat => InitializeCategoriesDataAsync());
@@ -101,7 +130,13 @@ namespace ISafetyVer2.ViewModels
 
         private async Task InitializeSubCatDataAsync()
         {
-            List<SubCategory> subCategories = await new FirebaseHelper().GetAllSubCategories();
+            List<SubCategory> subCategories = new List<SubCategory>();
+
+            if (SelectedCategory != null)
+            {
+                subCategories = await new FirebaseHelper().GetSubCategoriesByCategoryID(SelectedCategory.CategoryID);
+            }
+
             SubCategories = new ObservableCollection<SubCategory>();
             foreach (SubCategory subCategory in subCategories)
             {

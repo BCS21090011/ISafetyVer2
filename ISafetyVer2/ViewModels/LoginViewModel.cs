@@ -75,6 +75,7 @@ namespace ISafetyVer2.ViewModels
                 Preferences.Set("FreshFirebaseToken", serializedContent);
                 Preferences.Set("UserID", userID);
                 Preferences.Set("UserDBID", userDB.UserID);
+                Preferences.Set("UserRole", userDB.Role);
                 Application.Current.MainPage = new AppShell();
             }
             catch (Exception ex)

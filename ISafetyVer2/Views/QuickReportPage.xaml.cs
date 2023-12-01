@@ -11,7 +11,7 @@ public partial class QuickReportPage : ContentPage
 		BindingContext = new QuickReportViewModel(Navigation);
 	}
 
-	private async void UploadImgBtnOnClick(Object sender, EventArgs e)
+    private async void UploadImgBtnOnClick(Object sender, EventArgs e)
 	{
 		await DisplayAlert("Alert", "UploadImgBtn Clicked", "OK");
 	}

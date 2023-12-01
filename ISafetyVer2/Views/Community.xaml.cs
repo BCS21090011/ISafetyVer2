@@ -7,11 +7,4 @@ public partial class Community : ContentPage
 		InitializeComponent();
 	}
 
-	
-    private void Adminclick(object sender, EventArgs e)
-    {
-        Navigation.PushAsync(new Admin());
-    }
-
-
 }

@@ -87,16 +87,11 @@
                            Margin="0,0"/>
                     <Picker x:Name="SafetyPicker" Title="Select Safety Option" Grid.Row="1" 
                             VerticalOptions="End" HorizontalOptions="Center"
-                            FontSize="16" FontAttributes="Bold">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Near Miss Reports</x:String>
-                            <x:String>Injury and Lost Time Incident Report</x:String>
-                            <x:String>Exposure Incident Report</x:String>
-                            <x:String>Sentinel Event Report</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+                            FontSize="16" FontAttributes="Bold"
+                            ItemsSource="{Binding Categories}"
+                            ItemDisplayBinding="{Binding CategoryName}"
+                            SelectedItem="{Binding SelectedCategory}">
+                    </Picker>
 
 
 
@@ -106,16 +101,11 @@
                        Margin="0,10,0,50"/>
                     <Frame BorderColor="black" CornerRadius="10" VerticalOptions="End" 
                        Grid.Row="2"/>
-                    <Picker x:Name="Safetytype" Title="Select Safety Option" Grid.Row="2" VerticalOptions="End" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Near Miss Reports</x:String>
-                            <x:String>Injury and Lost Time Incident Report</x:String>
-                            <x:String>Exposure Incident Report</x:String>
-                            <x:String>Sentinel Event Report</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+                    <Picker x:Name="Safetytype" Title="Select Safety Option" Grid.Row="2" VerticalOptions="End" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold"
+                            ItemsSource="{Binding SubCategories}"
+                            ItemDisplayBinding="{Binding SubCatName}"
+                            SelectedItem="{Binding SelectedSubCat}">
+                    </Picker>
 
 
                     <Label Text="Description" TextColor="grey" Margin="0,20,0,50" FontSize="16" FontAttributes="Bold"
