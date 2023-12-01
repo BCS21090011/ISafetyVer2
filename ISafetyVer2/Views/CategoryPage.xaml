@@ -2,9 +2,66 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ISafetyVer2.Views.CategoryPage"
-             Title="CategoryPage">
-    <StackLayout Padding="20">
-        <Entry x:Name="CategoryNameEntry" Placeholder="Category Name"/>
-        <Button Text="Add Category" Clicked="AddCategoryBtnOnClick"/>
-    </StackLayout>
+             Title="CategoryPage"
+             Shell.NavBarIsVisible="False">
+    <ScrollView>
+        <StackLayout >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="900"/>
+                </Grid.RowDefinitions>
+                <Grid Margin="0,0,0,0" Grid.Row="0" >
+                    <Grid.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#ffc800"
+                          Offset="0.5" />
+                            <GradientStop Color="#ffaa41"
+                          Offset="0.9" />
+                        </LinearGradientBrush>
+                    </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+            
+            <Label Text="Category Page" 
+                   TextColor="White" 
+                   FontSize="24"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <ImageButton Source="backwhite.png" 
+                         HeightRequest="25" 
+                         WidthRequest="25" 
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center" 
+                         Grid.Row="0"
+                         Margin="20,0,0,0"
+                         Clicked="BackCat"/>
+        </Grid >
+                <Grid Grid.Row="1" Padding="20,20,20,0">
+                <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="75"/>
+                </Grid.RowDefinitions>
+                <Label Text="Please enter a category" 
+                       TextColor="Grey" 
+                       FontSize="18" 
+                       Grid.Row="0"/>
+                <Entry x:Name="CategoryNameEntry" 
+                       Placeholder="Category Name" 
+                       Grid.Row="1"/>
+                <Button Text="Add Category" 
+                        Clicked="AddCategoryBtnOnClick" 
+                        WidthRequest="100" 
+                        HorizontalOptions="End" 
+                        Grid.Row="2"
+                        BackgroundColor="#ffaa41"
+                        HeightRequest="50"/>
+        </Grid>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

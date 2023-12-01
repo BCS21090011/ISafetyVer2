@@ -2,15 +2,112 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ISafetyVer2.Views.SubCategoryPage"
-             Title="SubCategoryPage">
-    <StackLayout Padding="20">
-        <Picker x:Name="CategoryPicker" Title="Select Category"/>
-        <Entry x:Name="SubCatNameEntry" Placeholder="Sub Category Name"/>
-        <Entry x:Name="AreaRadiusEntry" Keyboard="Numeric" TextChanged="EntryEnsureInt" Placeholder="Area Radius"/>
-        <Entry x:Name="DangerLvlEntry" Keyboard="Numeric" TextChanged="EntryEnsureInt" Placeholder="Danger Level"/>
-        <Editor x:Name="SafetyTipsDescriptionEditor" Placeholder="Enter Safety Tips Description" HeightRequest="100"/>
-        <Button Text="Add SubCategory" Clicked="AddSubCategoryBtnOnClick"/>
+             Title="SubCategoryPage"
+             Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <StackLayout >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="900"/>
+                </Grid.RowDefinitions>
+                <Grid Margin="0,0,0,0" Grid.Row="0" >
+                    <Grid.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#ffc800"
+                          Offset="0.5" />
+                            <GradientStop Color="#ffaa41"
+                          Offset="0.9" />
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Category Page" 
+                   TextColor="White" 
+                   FontSize="24"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+                    <ImageButton Source="backwhite.png" 
+                         HeightRequest="25" 
+                         WidthRequest="25" 
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center" 
+                         Grid.Row="0"
+                         Margin="20,0,0,0"
+                         Clicked="BackSubCat"/>
+                </Grid >
+                <Grid Grid.Row="1" Padding="20,20,20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="65"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Text="Select a category"
+                           />
+                    <Picker x:Name="CategoryPicker" 
+                            VerticalOptions="End"
+                            Grid.Row="0"/>
+                    <Label Grid.Row="1"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Text="Enter a sub-category"
+                           />
+                    <Entry x:Name="SubCatNameEntry"  
+                           VerticalOptions="End"
+                           Grid.Row="1"/>
+                    <Label Grid.Row="2"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Text="Enter the area radius"
+                           />
+                    <Entry x:Name="AreaRadiusEntry" 
+                           Keyboard="Numeric" 
+                           VerticalOptions="End"
+                           TextChanged="EntryEnsureInt" 
+                           Grid.Row="2"/>
+                    <Label Grid.Row="3"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Text="Enter the danger level"
+                           />
+                    <Entry x:Name="DangerLvlEntry" 
+                           Keyboard="Numeric" 
+                           VerticalOptions="End"
+                           TextChanged="EntryEnsureInt" 
+                           Grid.Row="3"/>
+                    <Label Grid.Row="4"
+                           Margin="0,20,0,0"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Text="Enter the safety tips description"
+                           />
+                    <Editor x:Name="SafetyTipsDescriptionEditor" 
+                            HeightRequest="100"
+                            VerticalOptions="End"
+                            Grid.Row="4"/>
+                    
+                    <Button Text="Add SubCategory" 
+                            Clicked="AddSubCategoryBtnOnClick"
+                            Grid.Row="5"
+                            BackgroundColor="#ffaa41"
+                            HeightRequest="50"
+                            WidthRequest="100"
+                            HorizontalOptions="End"
+                            Margin="0,20,0,0"/>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
     
-    
-    </StackLayout>
 </ContentPage>

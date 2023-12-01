@@ -28,4 +28,9 @@ public partial class CategoryPage : ContentPage
 		await DisplayAlert("Completed", $"Category: \"{CategoryNameEntry.Text}\" added!", "Back");
 		await Navigation.PopAsync();
 	}
+
+    private void BackCat(object obj, EventArgs e)
+    {
+        Navigation.PopAsync();   // Safetytips1 in original.
+    }
 }

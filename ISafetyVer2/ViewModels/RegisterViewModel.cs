@@ -19,7 +19,33 @@ namespace ISafetyVer2.ViewModels
 
         private string email;
         private string password;
+        private string name;
+        private string phonenumber;
 
+        public string Name
+        {
+            get => name;
+            set
+            {
+                if (name != value)
+                {
+                    name = value;
+                    RaisePropertyChanged(nameof(Name));
+                }
+            }
+        }
+        public string PhoneNumber
+        {
+            get => phonenumber;
+            set
+            {
+                if (phonenumber != value)
+                {
+                    phonenumber = value;
+                    RaisePropertyChanged(nameof(PhoneNumber));
+                }
+            }
+        }
         public string Email
         {
             get => email;
@@ -68,8 +94,8 @@ namespace ISafetyVer2.ViewModels
                 string userID = user.LocalId;
 
                 // These values should be binded:
-                string userName = "I@mUser";
-                string userPhoneNumber = "0123456789";
+                string userName = name;
+                string userPhoneNumber = phonenumber;
                 string userEmail = email;
 
                 DBUser userDB = new DBUser {

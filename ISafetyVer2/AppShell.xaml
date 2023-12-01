@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:ISafetyVer2.Views"
     Shell.FlyoutBehavior="Disabled">
+    
 
     <TabBar x:Name="MyTabs">
         <ShellContent
@@ -25,4 +26,6 @@
             Icon="user.png"
             Route="Profile"/>
     </TabBar>
+
+    <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate views:LoginPage}" />
 </Shell>

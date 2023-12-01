@@ -80,4 +80,9 @@ public partial class SubCategoryPage : ContentPage
 			}
 		}
 	}
+
+    private void BackSubCat(object obj, EventArgs e)
+    {
+        Navigation.PopAsync();   // Safetytips1 in original.
+    }
 }
