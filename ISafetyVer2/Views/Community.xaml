@@ -6,7 +6,7 @@
              Shell.NavBarIsVisible="False">
 
     <ScrollView >
-        <Grid>
+        <Grid BackgroundColor="WhiteSmoke">
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
@@ -20,11 +20,9 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    Margin="0,0,0,0" FontFamily="Lobster"/>
-            
 
-            <StackLayout Grid.Row="2" 
-                BackgroundColor="WhiteSmoke" 
-            >
+
+            <StackLayout Grid.Row="2" >
                 <Grid Padding="20,20,20,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0" />
@@ -84,7 +82,7 @@
                     <Label Text="Community Circle" TextColor="Black" 
                    Margin="0,0,0,0" FontSize="20" FontAttributes="Bold"
                    Grid.Row="3" VerticalOptions="Center" 
-                   HorizontalOptions="Start" />
+                   HorizontalOptions="Start" FontFamily="Lobster" />
 
 
                     <!-- Community circle -->

@@ -17,24 +17,41 @@
             </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="100" />
-                <RowDefinition Height="900" />
+                <RowDefinition Height="700" />
             </Grid.RowDefinitions>
 
 
-            <ImageButton Source="backwhite.png" HeightRequest="25" 
-                         WidthRequest="25" HorizontalOptions="Start"
-                         VerticalOptions="Center" Margin="20,15,0,0"
-                         Clicked="Backclickcatpage" Grid.Row="0"/>
+            <ImageButton Source="backwhite.png" 
+                         HeightRequest="25" 
+                         WidthRequest="25" 
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center" 
+                         Margin="20,15,0,0"
+                         Clicked="Backclickcatpage" 
+                         Grid.Row="0"/>
 
 
-            <Label HorizontalOptions="Center"  VerticalOptions="Center" Margin="10,10,0,0"
-                   Text="Safety Tips" FontAttributes="Bold" FontFamily="Lobster"
-                   FontSize="25" TextColor="White" Grid.Row="0"/>
+            <Label HorizontalOptions="Center"  
+                   VerticalOptions="Center" 
+                   Margin="10,10,0,0"
+                   Text="Safety Tips" 
+                   FontAttributes="Bold" 
+                   FontFamily="Lobster"
+                   FontSize="25" 
+                   TextColor="White" 
+                   Grid.Row="0"/>
             
-            <CollectionView ItemsSource="{Binding Categories}" Grid.Row="2" Margin="0,20,0,20">
+            <CollectionView ItemsSource="{Binding Categories}" 
+                            Grid.Row="2" 
+                            Margin="0,20,0,20">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame Background="White" HeightRequest="100" WidthRequest="350"  Margin="10,10" BorderColor="White" Opacity="1">
+                            <Frame Background="White" 
+                                   HeightRequest="100" 
+                                   WidthRequest="350"  
+                                   Margin="10,10" 
+                                   BorderColor="White" 
+                                   Opacity="1">
                                 <Grid >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*" />
@@ -45,11 +62,22 @@
                                         <ColumnDefinition Width="100"/>
                                     </Grid.ColumnDefinitions>
                                     
-                                    <Label Grid.Column="0" Text="{Binding CategoryName}" FontSize="20" FontAttributes="Bold"
-                                     HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0"/>
-                                    <ImageButton Grid.Column="2" Source="next.png" WidthRequest="40" HeightRequest="25" HorizontalOptions="End"
-                                    Command="{Binding Path=BindingContext.CategoryOnClicked, 
-                                    Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding CategoryID}"/>
+                                    <Label Grid.Column="0" 
+                                           Text="{Binding CategoryName}" 
+                                           FontSize="20" 
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="Start" 
+                                           VerticalOptions="Center" 
+                                           Margin="10,0,0,0" 
+                                           WidthRequest="150"/>
+                                    <ImageButton Grid.Column="2" 
+                                                 Source="next.png" 
+                                                 WidthRequest="40" 
+                                                 HeightRequest="25" 
+                                                 HorizontalOptions="End"
+                                                 Command="{Binding Path=BindingContext.CategoryOnClicked, 
+                                                 Source={RelativeSource AncestorType={x:Type ContentPage}}}" 
+                                                 CommandParameter="{Binding CategoryID}"/>
                                 </Grid>
                             </Frame>
                         </DataTemplate>

@@ -4,19 +4,65 @@
              x:Class="ISafetyVer2.Views.SafetyTipsSubCatPage"
              Title="SafetyTipsSubCatPage"
              Shell.NavBarIsVisible="False">
+    <ScrollView>
     <VerticalStackLayout>
-        <ImageButton Source="back.png"  HeightRequest="30" WidthRequest="30" Clicked="Backclicksub"/>
+        <Grid >
+            <Grid.Background>
+                <LinearGradientBrush >
+                    <GradientStop Color="#f7b5ff"
+                          Offset="0.2" />
+                    <GradientStop Color="#ce6aff"
+                          Offset="0.5" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
 
-        <CollectionView x:Name="SubCategoriesListView">
+            <ImageButton Grid.Row="0" 
+                         Source="backwhite.png"  
+                         HeightRequest="30" 
+                         WidthRequest="30" 
+                         Clicked="Backclicksub" 
+                         HorizontalOptions="Start" 
+                         Margin="20,0,0,0" />
+            <Label Text="Safety Tips" 
+                   HorizontalOptions="Center" 
+                   FontSize="24" 
+                   TextColor="White" 
+                   Padding="20,0" 
+                   VerticalOptions="Center" 
+                   FontAttributes="Bold"/>
+        </Grid>
+
+        
+        <CollectionView x:Name="SubCategoriesListView"  
+                        BackgroundColor="WhiteSmoke">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10">
-                        <Label Text="{Binding SubCatName}" FontAttributes="Bold"/>
-                        <Label Text="{Binding SafetyTipsDescription}"/>
-                        <!-- Add other UI elements as needed -->
-                    </StackLayout>
+                    <StackLayout Padding="20">
+                            <Frame >
+                            <Grid  Padding="10,10">
+                                    <Label Text="{Binding SubCatName}" 
+                                       FontAttributes="Bold" 
+                                       FontFamily="Lobster" 
+                                       FontSize="24" 
+                                       Margin="0,0,0,0"
+                                       VerticalOptions="Start"/>
+                                    <Label Text="{Binding SafetyTipsDescription}" 
+                                       FontAttributes="Italic" 
+                                       FontFamily="Lobster" 
+                                       FontSize="16" 
+                                       Margin="0,60,0,0"
+                                       VerticalOptions="End"/>
+                                <!-- Add other UI elements as needed -->
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </VerticalStackLayout>
+           
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

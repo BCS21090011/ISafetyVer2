@@ -16,5 +16,9 @@ public partial class Admin : ContentPage
         Navigation.PushAsync(new CategoryPage());
     }
 
-    
+    private void ReportedCase(object obj, EventArgs e)
+    {
+        Navigation.PushAsync(new ReportedCase());    // Quickreport in original.
+    }
+
 }

@@ -18,4 +18,7 @@ public partial class Profile : ContentPage
     {
         await _viewModel.Logout();
     }
+
+   
+
 }

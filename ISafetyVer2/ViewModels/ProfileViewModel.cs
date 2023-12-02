@@ -10,7 +10,7 @@ namespace ISafetyVer2.ViewModels
     public class ProfileViewModel : INotifyPropertyChanged
     {
         public ICommand LogoutCommand { get; }
-
+        
         public ProfileViewModel()
         {
             LogoutCommand = new Command(async () => await Logout());
@@ -33,5 +33,7 @@ namespace ISafetyVer2.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
     }
 }
