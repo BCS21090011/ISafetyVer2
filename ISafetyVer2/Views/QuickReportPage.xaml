@@ -121,15 +121,10 @@
                         />
 
 
-                <Label Text="When" TextColor="grey" Margin="0,0,0,100" FontSize="16" FontAttributes="Bold"
-                       Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Start"/>
-                <Frame BorderColor="black" CornerRadius="10" VerticalOptions="End" 
-                        Margin="0,20,0,50" Grid.Row="4"/>
-                <DatePicker MinimumDate="{Binding MinDate}" Grid.Row="4" 
-                             Margin="0,20,0,50" VerticalOptions="End" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16"
-                            MaximumDate="{Binding MaxDate}"
-                            Date="{Binding SelectedDate}" />
 
+                   
+
+                    
 
                 <Label Text="Where" TextColor="grey" Margin="0,20,0,50" FontSize="16" FontAttributes="Bold"
                        Grid.Row="5" VerticalOptions="Start" HorizontalOptions="Start"/>
@@ -150,9 +145,16 @@
                             Grid.Row="7" Margin="0,30,0,0" Text="Comfirm" 
                         WidthRequest="125" HeightRequest="50" HorizontalOptions="End"
                             Command="{Binding SubmitBtnOnClick}"/>
-                
 
-            </Grid>
+                    <Grid IsVisible="False" HorizontalOptions="Center" VerticalOptions="Center" Grid.RowSpan="7" >
+
+                        <Frame CornerRadius="30" Padding="20"
+           HorizontalOptions="Center" VerticalOptions="Center"
+           WidthRequest="350" HeightRequest="800"
+           BackgroundColor="White"  BorderColor="Black" />
+
+                    </Grid>
+                </Grid>
         </Frame>
         
         </Grid>
