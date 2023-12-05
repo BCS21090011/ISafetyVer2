@@ -117,6 +117,7 @@
                         Grid.Row="3"
                         Margin="0,50,0,20"
                         FontSize="16" FontAttributes="Bold"
+                        Text="{Binding DescriptionText}"
                         />
 
 
@@ -147,7 +148,8 @@
 
                     <Button x:Name="submitbtn"   BackgroundColor="#ffc800" 
                             Grid.Row="7" Margin="0,30,0,0" Text="Comfirm" 
-                        WidthRequest="125" HeightRequest="50" HorizontalOptions="End" />
+                        WidthRequest="125" HeightRequest="50" HorizontalOptions="End"
+                            Command="{Binding SubmitBtnOnClick}"/>
                 
 
             </Grid>

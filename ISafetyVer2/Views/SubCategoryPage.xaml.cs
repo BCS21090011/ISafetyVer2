@@ -59,7 +59,7 @@ public partial class SubCategoryPage : ContentPage
 			SubCatName = SubCatNameEntry.Text,
 			AreaRadius = areaRadius,
 			DangerLvl = dangerLvl,
-             SafetyTipsDescription = SafetyTipsDescriptionEditor.Text
+            SafetyTipsDescription = SafetyTipsDescriptionEditor.Text
         };
 
 		await new FirebaseHelper().AddSubCategory(subCategory);

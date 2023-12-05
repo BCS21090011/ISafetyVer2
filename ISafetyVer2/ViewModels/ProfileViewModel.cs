@@ -20,6 +20,9 @@ namespace ISafetyVer2.ViewModels
         {
             // Clear the stored Firebase token/session state
             Preferences.Remove("FreshFirebaseToken"); // Replace with your actual preference key
+            Preferences.Remove("UserID");
+            Preferences.Remove("UserDBID");
+            Preferences.Remove("UserRole");
 
             // Navigate to Login Page
             await Shell.Current.GoToAsync("//LoginPage"); // Update this navigation path as per your app's structure

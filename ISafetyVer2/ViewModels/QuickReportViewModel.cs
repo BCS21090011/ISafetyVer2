@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ISafetyVer2.Models;
 using ISafetyVer2.Services;
+using ISafetyVer2.Views;
 
 namespace ISafetyVer2.ViewModels
 {
@@ -15,11 +16,14 @@ namespace ISafetyVer2.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         private INavigation _navigation;
 
+        public Command SubmitBtnOnClick { get; }
+
         // Properties to be binded:
         private Category _selectedCategory;
         private ObservableCollection<Category> _categories;
         private SubCategory _selectedSubCat;
         private ObservableCollection<SubCategory> _subCategories;
+        private string _descriptionText;
 
         public Category SelectedCategory
         {
@@ -74,32 +78,53 @@ namespace ISafetyVer2.ViewModels
             }
         }
 
-        // User inputs:
-        public string subCatID { get; set; }
-        public string qRDescription { get; set; }
-        public decimal latitude { get; set; }
-        public decimal longitude { get; set; }
-
-        public async void ValidateInput()
+        public string DescriptionText
         {
-            if (string.IsNullOrWhiteSpace(qRDescription))
+            get => _descriptionText;
+            set
             {
-                await App.Current.MainPage.DisplayAlert("Alert", "Description can't be empty!", "OK");
-                return;
+                if (_descriptionText != value)
+                {
+                    _descriptionText = value;
+                    RaisePropertyChanged(nameof(DescriptionText));
+                }
             }
         }
 
-        public async void InsertQRToDB()
+        public async Task<bool> ValidateInput()
         {
-            await new FirebaseHelper().AddQuickReport(new QuickReport
+            if (SelectedCategory == null)
+            {
+                await App.Current.MainPage.DisplayAlert("Alert", "Category can't be empty!", "OK");
+                return false;
+            }
+            if (SelectedSubCat == null)
+            {
+                await App.Current.MainPage.DisplayAlert("Alert", "SubCategory can't be empty!", "OK");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(DescriptionText))
+            {
+                await App.Current.MainPage.DisplayAlert("Alert", "Description can't be empty!", "OK");
+                return false;
+            }
+
+            return true;
+        }
+
+        public async Task<string> InsertQRToDB()
+        {
+            string qrID = await new FirebaseHelper().AddQuickReport(new QuickReport
             {
                 UserID = Preferences.Get("UserID", "NoUserID"),
-                SubCatID = subCatID,
+                SubCatID = SelectedSubCat.SubCatID,
                 ReportDateTime = DateTime.Now,  // Get current DateTime.
-                QRDescription = qRDescription,
-                Latitude = latitude,
-                Longitude = longitude
+                QRDescription = DescriptionText,
+                Latitude = 2.3407990m,
+                Longitude = 111.8456972m
             });
+
+            return qrID;
         }
 
         public QuickReportViewModel(INavigation navigation)
@@ -116,6 +141,8 @@ namespace ISafetyVer2.ViewModels
                 .Child("SubCategories")
                 .AsObservable<SubCategory>()
                 .Subscribe(subcat => InitializeSubCatDataAsync());
+
+            SubmitBtnOnClick = new Command(SubmitQuickReport);
         }
 
         private async Task InitializeCategoriesDataAsync()
@@ -141,6 +168,16 @@ namespace ISafetyVer2.ViewModels
             foreach (SubCategory subCategory in subCategories)
             {
                 SubCategories.Add(subCategory);
+            }
+        }
+
+        private async void SubmitQuickReport(object obj)
+        {
+            if (await ValidateInput() == true)
+            {
+                string qrID = await InsertQRToDB();
+                await App.Current.MainPage.DisplayAlert("Completed", $"Sub Category: \"{qrID}\" added!", "Back");
+                await _navigation.PopAsync();
             }
         }
 
