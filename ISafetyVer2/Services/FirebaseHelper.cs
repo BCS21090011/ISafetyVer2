@@ -120,10 +120,14 @@ namespace ISafetyVer2.Services
         // For Storage:
         public FirebaseStorage firebaseStorage = new FirebaseStorage(Settings.FireBaseStorageBucket);
 
+        // Add media files to firebase storage:
         public async Task<string> UploadMediaToFirebase(string mediaPath)
         {
             FileStream stream = File.OpenRead(mediaPath);   // Open a stream to the file.
-            string filename = Path.GetFileName(mediaPath);  // Get the filename.
+
+            string filename = Path.GetFileName(mediaPath);
+            filename = $"{DateTime.Now.ToString("yyyyMMdd_HHmmss")}{filename}"; // Create unique filename.
+
             string storageMedia = await firebaseStorage
                 .Child("Medias")
                 .Child(filename)

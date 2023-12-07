@@ -39,18 +39,39 @@ public partial class QuickReportPage : ContentPage
 		try
 		{
 			FileResult file = await MediaPicker.PickPhotoAsync();
-			if (file == null)
-			{
-				return;
-			}
+			string filePath = null;
 
-			((QuickReportViewModel)BindingContext).MediaPath = file.FullPath;
+			if (file != null)
+			{
+				filePath = file.FullPath;
+            }
+
+			((QuickReportViewModel)BindingContext).MediaPath = filePath;
 		}
 		catch (Exception ex)
 		{
 			await DisplayAlert("Error", ex.Message, "OK");
 		}
 	}
+    private async void UploadVidBtnOnClick(Object sender, EventArgs e)
+    {
+        try
+        {
+            FileResult file = await MediaPicker.PickVideoAsync();
+            string filePath = null;
+
+            if (file != null)
+            {
+                filePath = file.FullPath;
+            }
+
+            ((QuickReportViewModel)BindingContext).MediaPath = filePath;
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
+    }
 
     private void Backclick(object obj, EventArgs e)
     {

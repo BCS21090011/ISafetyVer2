@@ -70,6 +70,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
 
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -138,14 +139,16 @@
 
                     <Label Text="Upload Photo or Video" TextColor="grey" Margin="0,20,0,70" FontSize="16" FontAttributes="Bold"
                        Grid.Row="6" VerticalOptions="Start" HorizontalOptions="Start"/>
-                <Frame BorderColor="black" CornerRadius="10" VerticalOptions="End" Grid.Row="6" HeightRequest="50"/>
+                <Frame BorderColor="black" CornerRadius="10" VerticalOptions="End" Grid.Row="6" Grid.RowSpan="2" HeightRequest="50"/>
                 <ImageButton Source="plus.png"  WidthRequest="25" HeightRequest="25" Grid.Row="6" VerticalOptions="End"  
                               Margin="0,0,0,15" Aspect="AspectFit" Clicked="UploadImgBtnOnClick"/>
-                <Image x:Name="PreviewImage" Grid.Row="6" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFit"/>
+                    <ImageButton Source="plus.png"  WidthRequest="25" HeightRequest="25" Grid.Row="7" VerticalOptions="End"  
+              Margin="0,0,0,15" Aspect="AspectFit" Clicked="UploadVidBtnOnClick"/>
+                    <Image x:Name="PreviewImage" Grid.Row="6" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFit"/>
 
 
                     <Button x:Name="submitbtn"   BackgroundColor="#ffc800" 
-                            Grid.Row="7" Margin="0,30,0,0" Text="Comfirm" 
+                            Grid.Row="8" Margin="0,30,0,0" Text="Comfirm" 
                         WidthRequest="125" HeightRequest="50" HorizontalOptions="End"
                             Command="{Binding SubmitBtnOnClick}"/>
 
