@@ -1,3 +1,4 @@
+using Firebase.Storage;
 using ISafetyVer2.ViewModels;
 
 namespace ISafetyVer2.Views;
@@ -25,4 +26,22 @@ public partial class QuickReportPage : ContentPage
     {
        Navigation.PopAsync();   // Safetytips1 in original.
     }
+
+    private async void OnUploadImageTapped(object sender, EventArgs e)
+    {
+        try
+        {
+            var file = await MediaPicker.PickPhotoAsync();
+            if (file == null) return;
+
+            var filePath = file.FullPath;
+             ((QuickReportViewModel)BindingContext).SetImageTempPath(filePath);
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
+    }
+
 }
+

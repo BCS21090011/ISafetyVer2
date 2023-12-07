@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Firebase.Storage;
 using ISafetyVer2.Models;
 using ISafetyVer2.Services;
 using ISafetyVer2.Views;
@@ -112,19 +113,52 @@ namespace ISafetyVer2.ViewModels
             return true;
         }
 
+        private string _tempImagePath; // Temporary storage for the image path
+
+        public void SetImageTempPath(string path)
+        {
+            _tempImagePath = path;
+        }
+
         public async Task<string> InsertQRToDB()
         {
-            string qrID = await new FirebaseHelper().AddQuickReport(new QuickReport
+            // Upload the image to Firebase Storage
+            var imageUrl = await UploadImageToFirebase(_tempImagePath);
+
+            // Create a QuickReport object with all details including the image URL
+            var quickReport = new QuickReport
             {
                 UserID = Preferences.Get("UserID", "NoUserID"),
-                SubCatID = SelectedSubCat.SubCatID,
-                ReportDateTime = DateTime.Now,  // Get current DateTime.
+                SubCatID = SelectedSubCat?.SubCatID,
+                ReportDateTime = DateTime.Now,
                 QRDescription = DescriptionText,
                 Latitude = 2.3407990m,
-                Longitude = 111.8456972m
-            });
+                Longitude = 111.8456972m,
+                ImageUrl = imageUrl // Set the image URL here
+            };
 
+            // Save the QuickReport object to Firebase Realtime Database
+            string qrID = await new FirebaseHelper().AddQuickReport(quickReport);
             return qrID;
+        }
+
+        private async Task<string> UploadImageToFirebase(string imagePath)
+        {
+            var stream = File.OpenRead(imagePath); // Open a stream to the image file
+            var fileName = Path.GetFileName(imagePath); // Get the file name
+            var storageImage = await new FirebaseStorage("isafety20231117.appspot.com")
+                                     .Child("images")
+                                     .Child(fileName)
+                                     .PutAsync(stream);
+
+            stream.Dispose(); // Dispose the stream
+            return storageImage; // The URL of the image in Firebase Storage
+        }
+
+        private string GetCurrentUserId()
+        {
+            // Example: Retrieving user ID from application preferences or settings
+            return Preferences.Get("UserID", "default_user_id");
         }
 
         public QuickReportViewModel(INavigation navigation)
@@ -185,5 +219,9 @@ namespace ISafetyVer2.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        
+        
+
     }
 }

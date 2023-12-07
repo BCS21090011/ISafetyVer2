@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ISafetyVer2.Models;
 using Firebase.Database.Query;
 
+
 namespace ISafetyVer2.Services
 {
     internal class FirebaseHelper
@@ -113,4 +114,7 @@ namespace ISafetyVer2.Services
 
         // Get all QuickReports with SubCategories and Categories:
     }
+
+   
+
 }
