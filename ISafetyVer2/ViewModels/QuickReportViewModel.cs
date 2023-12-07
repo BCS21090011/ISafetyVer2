@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Firebase.Storage;
 using ISafetyVer2.Models;
 using ISafetyVer2.Services;
 using ISafetyVer2.Views;
@@ -16,7 +17,6 @@ namespace ISafetyVer2.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         private INavigation _navigation;
 
-        public Command AddMediaBtnOnClick {  get; }
         public Command SubmitBtnOnClick { get; }
 
         // Properties to be binded:
@@ -26,6 +26,8 @@ namespace ISafetyVer2.ViewModels
         private ObservableCollection<SubCategory> _subCategories;
         private Location _incidentLocation = null;
         private string _descriptionText;
+
+        public string MediaPath { get; set; } = null;
 
         public Category SelectedCategory
         {
@@ -134,6 +136,13 @@ namespace ISafetyVer2.ViewModels
 
         public async Task<string> InsertQRToDB()
         {
+            string mediaURL = "NoMedia";    // The MediaURL will be NoMedia if there is none.
+
+            if (MediaPath != null)
+            {
+                mediaURL = await new FirebaseHelper().UploadMediaToFirebase(MediaPath);
+            }
+
             string qrID = await new FirebaseHelper().AddQuickReport(new QuickReport
             {
                 UserID = Preferences.Get("UserID", "NoUserID"),
@@ -142,7 +151,7 @@ namespace ISafetyVer2.ViewModels
                 QRDescription = DescriptionText,
                 Latitude = IncidentLocation.Latitude,
                 Longitude = IncidentLocation.Longitude,
-                MediaURL = null,
+                MediaURL = mediaURL,
                 Status = "Pending"
             });
 
@@ -164,7 +173,6 @@ namespace ISafetyVer2.ViewModels
                 .AsObservable<SubCategory>()
                 .Subscribe(subcat => InitializeSubCatDataAsync());
 
-            AddMediaBtnOnClick = new Command(AddMedia);
             SubmitBtnOnClick = new Command(SubmitQuickReport);
         }
 
@@ -192,11 +200,6 @@ namespace ISafetyVer2.ViewModels
             {
                 SubCategories.Add(subCategory);
             }
-        }
-
-        private async void AddMedia(object obj)
-        {
-
         }
 
         private async void SubmitQuickReport(object obj)

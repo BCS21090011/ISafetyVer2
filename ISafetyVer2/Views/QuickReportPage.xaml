@@ -140,7 +140,7 @@
                        Grid.Row="6" VerticalOptions="Start" HorizontalOptions="Start"/>
                 <Frame BorderColor="black" CornerRadius="10" VerticalOptions="End" Grid.Row="6" HeightRequest="50"/>
                 <ImageButton Source="plus.png"  WidthRequest="25" HeightRequest="25" Grid.Row="6" VerticalOptions="End"  
-                              Margin="0,0,0,15" Aspect="AspectFit"/>
+                              Margin="0,0,0,15" Aspect="AspectFit" Clicked="UploadImgBtnOnClick"/>
                 <Image x:Name="PreviewImage" Grid.Row="6" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFit"/>
 
 

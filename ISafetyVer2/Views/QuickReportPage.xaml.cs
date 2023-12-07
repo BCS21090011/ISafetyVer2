@@ -36,7 +36,20 @@ public partial class QuickReportPage : ContentPage
 
     private async void UploadImgBtnOnClick(Object sender, EventArgs e)
 	{
-		await DisplayAlert("Alert", "UploadImgBtn Clicked", "OK");
+		try
+		{
+			FileResult file = await MediaPicker.PickPhotoAsync();
+			if (file == null)
+			{
+				return;
+			}
+
+			((QuickReportViewModel)BindingContext).MediaPath = file.FullPath;
+		}
+		catch (Exception ex)
+		{
+			await DisplayAlert("Error", ex.Message, "OK");
+		}
 	}
 
     private void Backclick(object obj, EventArgs e)
