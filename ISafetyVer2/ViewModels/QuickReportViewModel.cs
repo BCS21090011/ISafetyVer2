@@ -16,6 +16,8 @@ namespace ISafetyVer2.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         private INavigation _navigation;
 
+        public Command ChooseLocationBtnOnClick { get; }
+        public Command ConfirmPinBtnOnClick { get; }
         public Command SubmitBtnOnClick { get; }
 
         // Properties to be binded:
@@ -24,6 +26,9 @@ namespace ISafetyVer2.ViewModels
         private SubCategory _selectedSubCat;
         private ObservableCollection<SubCategory> _subCategories;
         private string _descriptionText;
+        private bool _mapIsVisible;
+
+        private Location pinLocation;
 
         public Category SelectedCategory
         {
@@ -91,6 +96,19 @@ namespace ISafetyVer2.ViewModels
             }
         }
 
+        public bool MapIsVisible
+        {
+            get => _mapIsVisible;
+            set
+            {
+                if (_mapIsVisible != value)
+                {
+                    _mapIsVisible = value;
+                    RaisePropertyChanged(nameof(MapIsVisible));
+                }
+            }
+        }
+
         public async Task<bool> ValidateInput()
         {
             if (SelectedCategory == null)
@@ -108,6 +126,11 @@ namespace ISafetyVer2.ViewModels
                 await App.Current.MainPage.DisplayAlert("Alert", "Description can't be empty!", "OK");
                 return false;
             }
+            if (pinLocation == null)
+            {
+                await App.Current.MainPage.DisplayAlert("Alert", "Location can't be empty!", "OK");
+                return false;
+            }
 
             return true;
         }
@@ -120,8 +143,10 @@ namespace ISafetyVer2.ViewModels
                 SubCatID = SelectedSubCat.SubCatID,
                 ReportDateTime = DateTime.Now,  // Get current DateTime.
                 QRDescription = DescriptionText,
-                Latitude = 2.3407990m,
-                Longitude = 111.8456972m
+                Latitude = pinLocation.Latitude,
+                Longitude = pinLocation.Longitude,
+                MediaURL = null,
+                Status = "Pending"
             });
 
             return qrID;
@@ -142,6 +167,8 @@ namespace ISafetyVer2.ViewModels
                 .AsObservable<SubCategory>()
                 .Subscribe(subcat => InitializeSubCatDataAsync());
 
+            ChooseLocationBtnOnClick = new Command(OpenMap);
+            ConfirmPinBtnOnClick = new Command<Location>(GetMapLocation);
             SubmitBtnOnClick = new Command(SubmitQuickReport);
         }
 
@@ -168,6 +195,25 @@ namespace ISafetyVer2.ViewModels
             foreach (SubCategory subCategory in subCategories)
             {
                 SubCategories.Add(subCategory);
+            }
+        }
+
+        private void OpenMap(object obj)
+        {
+            MapIsVisible = true;
+        }
+
+        private async void GetMapLocation(Location location)
+        {
+            if (location != null)
+            {
+                bool respond = await App.Current.MainPage.DisplayAlert("Is this coordinate correct?", $"{location.Latitude}, {location.Longitude}", "Yes", "No");
+
+                if (respond == true)
+                {
+                    pinLocation = location;
+                    MapIsVisible = false;
+                }
             }
         }
 

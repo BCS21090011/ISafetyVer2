@@ -13,7 +13,9 @@ namespace ISafetyVer2.Models
         public string SubCatID { get; set; }
         public DateTime ReportDateTime { get; set; }
         public string QRDescription { get; set; }
-        public decimal Latitude {  get; set; }
-        public decimal Longitude { get; set; }
+        public double Latitude {  get; set; }
+        public double Longitude { get; set; }
+        public string MediaURL {  get; set; }
+        public string Status { get; set; }
     }
 }

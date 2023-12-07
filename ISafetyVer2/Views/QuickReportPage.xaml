@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ISafetyVer2.Views.QuickReportPage"
              Title="QuickReportPage"
+             x:Name="QuickReportPageName"
              Shell.NavBarIsVisible="False">
     
 
@@ -130,10 +132,11 @@
                        Grid.Row="5" VerticalOptions="Start" HorizontalOptions="Start"/>
                 <Frame BorderColor="black" CornerRadius="10" VerticalOptions="End" 
                        Grid.Row="5" HeightRequest="0"/>
+                    <Button x:Name="GetLocationBtn" Grid.Row="5" Margin="0, 30, 0, 0" Text="Choose Location" HorizontalOptions="Center" Command="{Binding ChooseLocationBtnOnClick}"/>
 
-                
-                
-                <Label Text="Upload Photo or Video" TextColor="grey" Margin="0,20,0,70" FontSize="16" FontAttributes="Bold"
+
+
+                    <Label Text="Upload Photo or Video" TextColor="grey" Margin="0,20,0,70" FontSize="16" FontAttributes="Bold"
                        Grid.Row="6" VerticalOptions="Start" HorizontalOptions="Start"/>
                 <Frame BorderColor="black" CornerRadius="10" VerticalOptions="End" Grid.Row="6" HeightRequest="50"/>
                 <ImageButton Source="plus.png"  WidthRequest="25" HeightRequest="25" Grid.Row="6" VerticalOptions="End"  
@@ -146,12 +149,23 @@
                         WidthRequest="125" HeightRequest="50" HorizontalOptions="End"
                             Command="{Binding SubmitBtnOnClick}"/>
 
-                    <Grid IsVisible="False" HorizontalOptions="Center" VerticalOptions="Center" Grid.RowSpan="7" >
+                    <Grid IsVisible="{Binding MapIsVisible}" HorizontalOptions="Center" VerticalOptions="Center" Grid.RowSpan="7" >
 
                         <Frame CornerRadius="30" Padding="20"
            HorizontalOptions="Center" VerticalOptions="Center"
            WidthRequest="350" HeightRequest="800"
-           BackgroundColor="White"  BorderColor="Black" />
+           BackgroundColor="White"  BorderColor="Black">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="500"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <maps:Map Grid.Row="0" x:Name="map" MapType="Hybrid" IsTrafficEnabled="True" IsShowingUser="True" MapClicked="MapOnClicked">
+                                </maps:Map>
+                                <Button Grid.Row="1" x:Name="ConfirmPinBtn" Margin="0, 30, 0, 0" Text="Confirm" WidthRequest="600" HorizontalOptions="Center" Command="{Binding ConfirmPinBtnOnClick}" CommandParameter="{Binding PinLocation, Source={x:Reference QuickReportPageName}}"/>
+                            </Grid>
+                        </Frame>
 
                     </Grid>
                 </Grid>
