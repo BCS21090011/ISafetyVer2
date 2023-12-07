@@ -16,8 +16,7 @@ namespace ISafetyVer2.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         private INavigation _navigation;
 
-        public Command ChooseLocationBtnOnClick { get; }
-        public Command ConfirmPinBtnOnClick { get; }
+        public Command AddMediaBtnOnClick {  get; }
         public Command SubmitBtnOnClick { get; }
 
         // Properties to be binded:
@@ -25,10 +24,8 @@ namespace ISafetyVer2.ViewModels
         private ObservableCollection<Category> _categories;
         private SubCategory _selectedSubCat;
         private ObservableCollection<SubCategory> _subCategories;
+        private Location _incidentLocation = null;
         private string _descriptionText;
-        private bool _mapIsVisible;
-
-        private Location pinLocation;
 
         public Category SelectedCategory
         {
@@ -83,6 +80,19 @@ namespace ISafetyVer2.ViewModels
             }
         }
 
+        public Location IncidentLocation
+        {
+            get => _incidentLocation;
+            set
+            {
+                if (_incidentLocation != value)
+                {
+                    _incidentLocation = value;
+                    RaisePropertyChanged(nameof(IncidentLocation));
+                }
+            }
+        }
+
         public string DescriptionText
         {
             get => _descriptionText;
@@ -92,19 +102,6 @@ namespace ISafetyVer2.ViewModels
                 {
                     _descriptionText = value;
                     RaisePropertyChanged(nameof(DescriptionText));
-                }
-            }
-        }
-
-        public bool MapIsVisible
-        {
-            get => _mapIsVisible;
-            set
-            {
-                if (_mapIsVisible != value)
-                {
-                    _mapIsVisible = value;
-                    RaisePropertyChanged(nameof(MapIsVisible));
                 }
             }
         }
@@ -126,7 +123,7 @@ namespace ISafetyVer2.ViewModels
                 await App.Current.MainPage.DisplayAlert("Alert", "Description can't be empty!", "OK");
                 return false;
             }
-            if (pinLocation == null)
+            if (IncidentLocation == null)
             {
                 await App.Current.MainPage.DisplayAlert("Alert", "Location can't be empty!", "OK");
                 return false;
@@ -143,8 +140,8 @@ namespace ISafetyVer2.ViewModels
                 SubCatID = SelectedSubCat.SubCatID,
                 ReportDateTime = DateTime.Now,  // Get current DateTime.
                 QRDescription = DescriptionText,
-                Latitude = pinLocation.Latitude,
-                Longitude = pinLocation.Longitude,
+                Latitude = IncidentLocation.Latitude,
+                Longitude = IncidentLocation.Longitude,
                 MediaURL = null,
                 Status = "Pending"
             });
@@ -157,18 +154,17 @@ namespace ISafetyVer2.ViewModels
             _navigation = navigation;
 
             // Realtime:
-            IDisposable observer1 = new FirebaseHelper().firebase
+            IDisposable observer1 = new FirebaseHelper().firebaseClient
                 .Child("Categories")
                 .AsObservable<Category>()
                 .Subscribe(cat => InitializeCategoriesDataAsync());
 
-            IDisposable observer2 = new FirebaseHelper().firebase
+            IDisposable observer2 = new FirebaseHelper().firebaseClient
                 .Child("SubCategories")
                 .AsObservable<SubCategory>()
                 .Subscribe(subcat => InitializeSubCatDataAsync());
 
-            ChooseLocationBtnOnClick = new Command(OpenMap);
-            ConfirmPinBtnOnClick = new Command<Location>(GetMapLocation);
+            AddMediaBtnOnClick = new Command(AddMedia);
             SubmitBtnOnClick = new Command(SubmitQuickReport);
         }
 
@@ -198,23 +194,9 @@ namespace ISafetyVer2.ViewModels
             }
         }
 
-        private void OpenMap(object obj)
+        private async void AddMedia(object obj)
         {
-            MapIsVisible = true;
-        }
 
-        private async void GetMapLocation(Location location)
-        {
-            if (location != null)
-            {
-                bool respond = await App.Current.MainPage.DisplayAlert("Is this coordinate correct?", $"{location.Latitude}, {location.Longitude}", "Yes", "No");
-
-                if (respond == true)
-                {
-                    pinLocation = location;
-                    MapIsVisible = false;
-                }
-            }
         }
 
         private async void SubmitQuickReport(object obj)

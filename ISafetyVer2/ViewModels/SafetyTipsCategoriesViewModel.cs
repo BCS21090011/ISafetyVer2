@@ -43,7 +43,7 @@ namespace ISafetyVer2.ViewModels
             _navigation = navigation;
 
             // Realtime:
-            IDisposable obserable = new FirebaseHelper().firebase
+            IDisposable obserable = new FirebaseHelper().firebaseClient
                 .Child("Categories")
                 .AsObservable<Category>()
                 .Subscribe(cat => InitializeCategoriesDataAsync());
