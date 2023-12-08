@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ISafetyVer2.Views.CategoryPage"
-             Title="CategoryPage"
-             Shell.NavBarIsVisible="False">
+             x:Class="ISafetyVer2.Views.AdminPost"
+             Title="AdminPost">
     <ScrollView>
         <StackLayout >
             <Grid >
@@ -15,56 +14,56 @@
                       Grid.Row="0" >
                     <Grid.Background>
                         <LinearGradientBrush>
-                            <GradientStop Color="#ffc800" 
-                                          Offset="0.5" />
-                            <GradientStop Color="#ffaa41" 
-                                          Offset="0.9" />
+                            <GradientStop Color="#b2b3f7" 
+                                          Offset="0.2" />
+                            <GradientStop Color="#8695ff"
+                                          Offset="0.7" />
                         </LinearGradientBrush>
                     </Grid.Background>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
-            </Grid.RowDefinitions>
-            
-                    
-            <Label Text="Category Page" 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Label Text="Category Page" 
                    TextColor="White" 
                    FontSize="24"
                    VerticalOptions="Center"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"/>
 
-            <ImageButton Source="backwhite.png" 
+                    <ImageButton Source="backwhite.png" 
                          HeightRequest="25" 
                          WidthRequest="25" 
                          HorizontalOptions="Start"
                          VerticalOptions="Center" 
                          Grid.Row="0"
                          Margin="20,0,0,0"
-                         Clicked="BackCat"/>
-        </Grid >
+                         Clicked="BackPost"/>
+                </Grid >
                 <Grid Grid.Row="1" Padding="20,20,20,0">
-                <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="75"/>
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
 
                     <!-- Category-->
-                <Label Text="Please enter a category" 
+                    <Label Text="Please enter a category" 
                        TextColor="Grey" 
                        FontSize="18" 
                        Grid.Row="0"/>
-                <Entry x:Name="CategoryNameEntry" 
+                    <Entry x:Name="CategoryNameEntry" 
                        Placeholder="Category Name" 
                        Grid.Row="1"/>
-                <Button Text="Add Category" 
-                        Clicked="AddCategoryBtnOnClick" 
+                    <Button Text="Add Category" 
+                        
                         WidthRequest="100" 
                         HorizontalOptions="End" 
                         Grid.Row="2"
-                        BackgroundColor="#ffaa41"
+                        BackgroundColor="#8695ff"
                         HeightRequest="50"/>
-        </Grid>
+                </Grid>
             </Grid>
         </StackLayout>
     </ScrollView>
