@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ISafetyVer2.Models;
 using Firebase.Database.Query;
 using Firebase.Storage;
+using Firebase.Auth;
 
 namespace ISafetyVer2.Services
 {
@@ -72,6 +73,18 @@ namespace ISafetyVer2.Services
             }).ToList();
         }
 
+        // Get SubCategory by SubCatID:
+        public async Task<SubCategory> GetSubCategoryBySubCatID(string subCatID)
+        {
+            IReadOnlyCollection<FirebaseObject<SubCategory>> result = await firebaseClient
+                .Child("Subcategories")
+                .OrderByKey()
+                .EqualTo(subCatID)
+                .OnceAsync<SubCategory>();
+
+            return result.FirstOrDefault()?.Object; // Return null if there are no matches.
+        }
+
         // Get SubCategory by CategoryID:
         /*
         // This will download all subcategories, might need to change it later (maybe using similar approach with GetDBUserByUserID()).
@@ -112,6 +125,22 @@ namespace ISafetyVer2.Services
         }
 
         // Get all QuickReports with SubCategories and Categories:
+        public async Task<List<QuickReport>> GetAllQuickReport()
+        {
+            return (await firebaseClient.Child("QuickReports").OnceAsync<QuickReport>()).Select(item => new QuickReport
+            {
+                QRID = item.Key,
+                UserID = item.Object.UserID,
+                SubCatID = item.Object.SubCatID,
+                ReportDateTime = item.Object.ReportDateTime,
+                QRDescription = item.Object.QRDescription,
+                Latitude = item.Object.Latitude,
+                Longitude = item.Object.Longitude,
+                Radius = item.Object.Radius,
+                MediaURL = item.Object.MediaURL,
+                Status = item.Object.Status
+            }).ToList();
+        }
 
         /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
         // For Storage:
