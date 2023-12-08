@@ -163,5 +163,10 @@ namespace ISafetyVer2.Services
 
             return storageMedia;    // The URL of the media in firebase storage.
         }
+
+        /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+        // General:
+
+        // Get file info using URL:
     }
 }
