@@ -134,5 +134,26 @@ namespace ISafetyVer2.Services
 
             return storageMedia;    // The URL of the media in firebase storage.
         }
+
+        
+        public async Task<List<QuickReport>> GetAllQuickReports()
+        {
+            List<QuickReport> result = null;
+            result = (await firebaseClient.Child("QuickReports").OnceAsync<QuickReport>()).Select(item => new QuickReport
+            {
+                QRID = item.Key,
+                UserID = item.Object.UserID,
+                SubCatID = item.Object.SubCatID,
+                ReportDateTime = item.Object.ReportDateTime,
+                QRDescription = item.Object.QRDescription,
+                Latitude = item.Object.Latitude,
+                Longitude = item.Object.Longitude,
+                Radius = item.Object.Radius,
+                MediaURL = item.Object.MediaURL,
+                Status = item.Object.Status
+            }).ToList();
+
+            return result;
+        }
     }
 }

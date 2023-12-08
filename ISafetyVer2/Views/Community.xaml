@@ -25,15 +25,19 @@
             <StackLayout Grid.Row="2" >
                 <Grid Padding="20,20,20,0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0" />
-                        <RowDefinition Height="75"/>
-                        <RowDefinition Height="150"/>
-                        <RowDefinition Height="70"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="200"/>
-                        <RowDefinition Height="200"/>
-
-
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                       
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="350"/>
@@ -51,37 +55,38 @@
                    HorizontalOptions="Start" FontFamily="Lobster" />
 
 
+                    <CarouselView ItemsSource="{Binding QuickReports}" Grid.Row="2" Loop="False" IndicatorView="QuickReport" ItemsUpdatingScrollMode="KeepItemsInView">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                    <Frame  Grid.Row="2" CornerRadius="10" 
+                           VerticalOptions="StartAndExpand" BorderColor="Black" >
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFrameTapped"/>
+                        </Frame.GestureRecognizers>
+                                    <StackLayout>
+                                        <!-- Content inside your frame -->
+                                        <Label Text="{Binding QRDescription}" FontSize="30" FontAttributes="Bold" TextColor="Black" />
+                                        <Label Text="{Binding ReportDateTime, StringFormat='Reported on {0:MM/dd/yyyy HH:mm}'}" FontSize="14" />
+                                        <Label Text="{Binding QRAddress}" FontSize="14" />
+                                        <Label Text="{Binding Latitude, StringFormat='Latitude: {0:F2}'}" FontSize="14" />
+                                        <Label Text="{Binding Longitude, StringFormat='Longitude: {0:F2}'}" FontSize="14" />
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <IndicatorView x:Name="QuickReport"
+                IndicatorColor="Red"
+                SelectedIndicatorColor="Blue"
+                HorizontalOptions="Center"
+                Grid.Row="3"/>
 
                     <!-- Your reports-->
-                    <Frame Grid.Row="2" HorizontalOptions="Start" CornerRadius="10" BorderColor="Black"
-                   WidthRequest="300"/>
-                    <Label Text="Road Safety" Grid.Row="2"
-                   VerticalOptions="Start" HorizontalOptions="Start"
-                   FontSize="20" FontAttributes="Bold" Margin="20,20,0,0"/>
-                    <Label Text="Reported Date" Grid.Row="2"
-                   VerticalOptions="Center" HorizontalOptions="Start"
-                   FontSize="12" FontAttributes="Bold" Margin="20,0,0,20"/>
-                    <Label Text="Location" Grid.Row="2"
-                   VerticalOptions="Center" HorizontalOptions="Start"
-                   FontSize="12" FontAttributes="Bold" Margin="20,50,0,20"/>
-                    <Label Text="Progress" Grid.Row="2"
-                   VerticalOptions="End" HorizontalOptions="Start"
-                   FontSize="12" FontAttributes="Bold" Margin="20,0,0,10"/>
-                    <Label Text="19/87/1987 19:08 PM" Grid.Row="2"
-                   VerticalOptions="Center" HorizontalOptions="Center"
-                   FontSize="12"  Margin="20,0,0,20"/>
-                    <Label Text="10,Lot Aman2,Jalan Lanang&#10;96000 Sibu,Sarawak" Grid.Row="2"
-                   VerticalOptions="Center" HorizontalOptions="Center"
-                   FontSize="12"  Margin="50,50,0,0"/>
-                    <Label Text="Pending" Grid.Row="2"
-                   VerticalOptions="End" HorizontalOptions="Center"
-                   FontSize="12" Margin="0,0,60,10"/>
-
-
+                   
                     <!-- Community circle title-->
                     <Label Text="Community Circle" TextColor="Black" 
                    Margin="0,0,0,0" FontSize="20" FontAttributes="Bold"
-                   Grid.Row="3" VerticalOptions="Center" 
+                   Grid.Row="4" VerticalOptions="Start" 
                    HorizontalOptions="Start" FontFamily="Lobster" />
 
 
