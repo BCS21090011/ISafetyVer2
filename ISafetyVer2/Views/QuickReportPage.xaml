@@ -209,18 +209,22 @@
                                HorizontalOptions="Center" 
                                VerticalOptions="Center"
                                WidthRequest="350" 
-                               HeightRequest="800"
+                               HeightRequest="850"
                                BackgroundColor="White"  
                                BorderColor="Black">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="650"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
                                 <maps:Map Grid.Row="0" x:Name="map" MapType="Hybrid" IsTrafficEnabled="True" IsShowingUser="True" MapClicked="MapOnClicked">
                                 </maps:Map>
-                                <Button Grid.Row="1" x:Name="CloseBtn" 
+                                <Label x:Name="RadiusSliderLbl" Text="Radius: 0 meters" Grid.Row="1" VerticalOptions="End" Margin="0,0" WidthRequest="200" HorizontalOptions="Center"/>
+                                <Slider x:Name="RadiusSlider" Grid.Row="2" VerticalOptions="End" Margin="0,0" WidthRequest="200" HorizontalOptions="Center" Minimum="0" Maximum="1000" Value="0"  ValueChanged="RadiusSliderOnChange"/>
+                                <Button Grid.Row="3" x:Name="CloseBtn" 
                                         VerticalOptions="End" 
                                         Margin="0,30" 
                                         Text="Close" 

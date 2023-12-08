@@ -67,7 +67,6 @@ namespace ISafetyVer2.Services
                 SubCatID = item.Key,
                 CategoryID = item.Object.CategoryID,
                 SubCatName = item.Object.SubCatName,
-                AreaRadius = item.Object.AreaRadius,
                 DangerLvl = item.Object.DangerLvl,
                 SafetyTipsDescription = item.Object.SafetyTipsDescription
             }).ToList();
@@ -83,7 +82,6 @@ namespace ISafetyVer2.Services
                 SubCatID = item.Key,
                 CategoryID = item.Object.CategoryID,
                 SubCatName = item.Object.SubCatName,
-                AreaRadius = item.Object.AreaRadius,
                 DangerLvl = item.Object.DangerLvl
             }).ToList();
         }
@@ -101,7 +99,6 @@ namespace ISafetyVer2.Services
                 SubCatID = item.Key,
                 CategoryID = item.Object.CategoryID,
                 SubCatName = item.Object.SubCatName,
-                AreaRadius = item.Object.AreaRadius,
                 DangerLvl = item.Object.DangerLvl,
                 SafetyTipsDescription = item.Object.SafetyTipsDescription
             }).ToList();
@@ -126,7 +123,7 @@ namespace ISafetyVer2.Services
             FileStream stream = File.OpenRead(mediaPath);   // Open a stream to the file.
 
             string filename = Path.GetFileName(mediaPath);
-            filename = $"{DateTime.Now.ToString("yyyyMMdd_HHmmss")}{filename}"; // Create unique filename.
+            filename = $"{DateTime.Now.ToString("yyyyMMdd_HHmmssfff")}_{filename}"; // Create unique filename.
 
             string storageMedia = await firebaseStorage
                 .Child("Medias")

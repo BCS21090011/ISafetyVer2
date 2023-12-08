@@ -15,6 +15,7 @@ namespace ISafetyVer2.Models
         public string QRDescription { get; set; }
         public double Latitude {  get; set; }
         public double Longitude { get; set; }
+        public double Radius {  get; set; }
         public string MediaURL {  get; set; }
         public string Status { get; set; }
     }

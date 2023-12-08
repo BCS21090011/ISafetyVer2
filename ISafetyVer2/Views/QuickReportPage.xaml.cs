@@ -6,6 +6,8 @@ namespace ISafetyVer2.Views;
 
 public partial class QuickReportPage : ContentPage
 {
+	private Location incidentLocation;
+	private double incidentRadius = 0;
 	public QuickReportPage()
 	{
 		InitializeComponent();
@@ -23,14 +25,21 @@ public partial class QuickReportPage : ContentPage
 		MapGrid.IsVisible = false;
 	}
 
-	private async void MapOnClicked(Object sender, MapClickedEventArgs e)
+	private void RadiusSliderOnChange(Object sender, ValueChangedEventArgs e)
 	{
-		map.Pins.Clear();
-		map.Pins.Add(new Pin
-		{
-			Label = "Pin",
-			Location = e.Location
-		});
+        double increment = 1; // Define your increment
+        double newValue = Math.Round(e.NewValue / increment) * increment;
+        RadiusSlider.Value = newValue;
+		incidentRadius = newValue;
+		RadiusSliderLbl.Text = $"Radius: {newValue} meters";
+		MapAddLocation();	// Update the map.
+		((QuickReportViewModel)BindingContext).IncidentRadius = newValue;
+	}
+
+	private void MapOnClicked(Object sender, MapClickedEventArgs e)
+	{
+		incidentLocation = e.Location;
+		MapAddLocation();
 		((QuickReportViewModel)BindingContext).IncidentLocation = e.Location;
     }
 
@@ -77,4 +86,31 @@ public partial class QuickReportPage : ContentPage
     {
        Navigation.PopAsync();   // Safetytips1 in original.
     }
+
+	private void MapAddLocation()
+	{
+		// Clear pins and circles:
+		map.Pins.Clear();
+		map.MapElements.Clear();
+
+		if (incidentRadius == 0)
+		{
+            map.Pins.Add(new Pin
+            {
+                Label = "Location",
+                Location = incidentLocation
+            });
+        }
+		else
+		{
+			map.MapElements.Add(new Circle
+			{
+				Center = incidentLocation,
+				Radius = new Microsoft.Maui.Maps.Distance(incidentRadius),
+                StrokeColor = Color.FromArgb("#B0FF0000"),
+                StrokeWidth = 8,
+                FillColor = Color.FromArgb("#70FF0000")
+            });
+		}
+	}
 }

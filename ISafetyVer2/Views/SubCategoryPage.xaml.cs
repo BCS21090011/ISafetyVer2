@@ -37,13 +37,6 @@ public partial class SubCategoryPage : ContentPage
 			return;
 		}
 
-		// For AreaRadiusEntry:
-		if (AreaRadiusEntry.Text.Contains('.') || !int.TryParse(AreaRadiusEntry.Text, out int areaRadius))
-		{
-			await DisplayAlert("Alert", "Invalid Area Radius!", "OK");
-			return;
-		}
-
 		// For DangerLvlEntry:
 		if (DangerLvlEntry.Text.Contains('.') || !int.TryParse(DangerLvlEntry.Text, out int dangerLvl))
 		{
@@ -57,7 +50,6 @@ public partial class SubCategoryPage : ContentPage
 		{
 			CategoryID = selectedCategory.CategoryID,
 			SubCatName = SubCatNameEntry.Text,
-			AreaRadius = areaRadius,
 			DangerLvl = dangerLvl,
             SafetyTipsDescription = SafetyTipsDescriptionEditor.Text
         };

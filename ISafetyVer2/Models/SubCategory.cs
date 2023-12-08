@@ -11,7 +11,6 @@ namespace ISafetyVer2.Models
         public string SubCatID { get; set; }
         public string CategoryID { get; set; }
         public string SubCatName { get; set; }
-        public int AreaRadius { get; set; }
         public int DangerLvl { get; set; }
         public string SafetyTipsDescription { get; set; } // Add this line
     }

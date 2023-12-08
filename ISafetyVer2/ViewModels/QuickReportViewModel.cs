@@ -28,6 +28,7 @@ namespace ISafetyVer2.ViewModels
         private string _descriptionText;
 
         public string MediaPath { get; set; } = null;
+        public double IncidentRadius { get; set; } = 0;
 
         public Category SelectedCategory
         {
@@ -151,6 +152,7 @@ namespace ISafetyVer2.ViewModels
                 QRDescription = DescriptionText,
                 Latitude = IncidentLocation.Latitude,
                 Longitude = IncidentLocation.Longitude,
+                Radius = IncidentRadius,
                 MediaURL = mediaURL,
                 Status = "Pending"
             });
