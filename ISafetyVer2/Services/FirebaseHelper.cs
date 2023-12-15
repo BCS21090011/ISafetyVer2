@@ -142,6 +142,30 @@ namespace ISafetyVer2.Services
             }).ToList();
         }
 
+        // Get QuickReports by UserID:
+        public async Task<List<QuickReport>> GetAllQuickReportByUserID(string userID)
+        {
+            IReadOnlyCollection<FirebaseObject<QuickReport>> result = await firebaseClient
+                .Child("QuickReports")
+                .OrderBy("UserID")
+                .EqualTo(userID)
+                .OnceAsync<QuickReport>();
+                
+            return result.Select(item => new QuickReport
+            {
+                QRID = item.Key,
+                UserID = item.Object.UserID,
+                SubCatID = item.Object.SubCatID,
+                ReportDateTime = item.Object.ReportDateTime,
+                QRDescription = item.Object.QRDescription,
+                Latitude = item.Object.Latitude,
+                Longitude = item.Object.Longitude,
+                Radius = item.Object.Radius,
+                MediaURL = item.Object.MediaURL,
+                Status = item.Object.Status
+            }).ToList();
+        }
+
         /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
         // For Storage:
         public FirebaseStorage firebaseStorage = new FirebaseStorage(Settings.FireBaseStorageBucket);
@@ -168,5 +192,7 @@ namespace ISafetyVer2.Services
         // General:
 
         // Get file info using URL:
+
+
     }
 }
