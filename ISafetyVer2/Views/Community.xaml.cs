@@ -25,7 +25,7 @@ public partial class Community : ContentPage
             else
             {
                 // Currently collapsed.
-                frame.HeightRequest = 500;  // Expand it.
+                frame.HeightRequest = -1;  // Expand it.
                 frameIsExpanded = true;
             }
         }

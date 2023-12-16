@@ -59,7 +59,7 @@
                    HorizontalOptions="Start" FontFamily="Lobster" />
 
 
-                    <CarouselView ItemsSource="{Binding QuickReports}" Grid.Row="2" Loop="False" IndicatorView="QuickReport" ItemsUpdatingScrollMode="KeepItemsInView">
+                    <CarouselView ItemsSource="{Binding QuickReports}" Grid.Row="2" Loop="False" IndicatorView="QuickReports" ItemsUpdatingScrollMode="KeepItemsInView">
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
                                 <Frame  Grid.Row="2" 
@@ -160,7 +160,7 @@
                             </DataTemplate>
                         </CarouselView.ItemTemplate>
                     </CarouselView>
-                    <IndicatorView x:Name="QuickReport"
+                    <IndicatorView x:Name="QuickReports"
                 IndicatorColor="#a7a7a7"
                 SelectedIndicatorColor="#cd5c5c"
                 HorizontalOptions="Center"

@@ -10,9 +10,12 @@ namespace ISafetyVer2.ViewModels
     public class ProfileViewModel : INotifyPropertyChanged
     {
         public ICommand LogoutCommand { get; }
-        
+
+        public string CurrentUserId { get; private set; }
         public ProfileViewModel()
         {
+            
+            CurrentUserId = Preferences.Get("UserId", string.Empty);
             LogoutCommand = new Command(async () => await Logout());
         }
 

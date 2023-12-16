@@ -19,6 +19,14 @@ public partial class Profile : ContentPage
         await _viewModel.Logout();
     }
 
-   
+    private void AccountInfoOnClick(object obj, EventArgs e)
+    {
+        Navigation.PushAsync(new AcountInformation());    // Quickreport in original.
+    }
+
+    private void ReportHistoryOnClick(object obj, EventArgs e)
+    {
+        Navigation.PushAsync(new QuickReportPage());    // Quickreport in original.
+    }
 
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ISafetyVer2.Views.AcountInformation"
+             Title="AcountInformation"
+             Shell.NavBarIsVisible="False">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid >
+                <Grid.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#a7e79d"
+                          Offset="0.5" />
+                        <GradientStop Color="#97d592"
+                          Offset="0.7" />
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+
+                <ImageButton Grid.Row="0" 
+                         Source="backwhite.png"  
+                         HeightRequest="30" 
+                         WidthRequest="30" 
+                         Clicked="AIClick" 
+                         HorizontalOptions="Start" 
+                         Margin="20,0,0,0" />
+                <Label Text="Account Information" 
+                   HorizontalOptions="Center" 
+                   FontSize="24" 
+                   TextColor="White" 
+                   Padding="20,0" 
+                   VerticalOptions="Center" 
+                   FontAttributes="Bold"/>
+            </Grid>
+            <!-- Inside your ScrollView and VerticalStackLayout -->
+            <Label Text="{Binding CurrentUser.UserEmail}" FontSize="16"/>
+            <Label Text="{Binding CurrentUser.UserName}" FontSize="16"/>
+            <!-- Add more fields as needed -->
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
