@@ -3,7 +3,9 @@ using Microsoft.Maui.Controls;
 using Firebase.Auth;
 using ISafetyVer2.Views;
 using System.ComponentModel;
-// Ensure you have Xamarin.Essentials referenced
+using ISafetyVer2.Models;
+using ISafetyVer2.Services;
+
 
 namespace ISafetyVer2.ViewModels
 {
@@ -11,27 +13,43 @@ namespace ISafetyVer2.ViewModels
     {
         public ICommand LogoutCommand { get; }
 
-        public string CurrentUserId { get; private set; }
+        private DBUser _currentUser;
+        public DBUser CurrentUser
+        {
+            get => _currentUser;
+            set
+            {
+                _currentUser = value;
+                OnPropertyChanged(nameof(CurrentUser));
+            }
+        }
+
         public ProfileViewModel()
         {
-            
-            CurrentUserId = Preferences.Get("UserId", string.Empty);
             LogoutCommand = new Command(async () => await Logout());
+            LoadUserData();
+        }
+
+        private async void LoadUserData()
+        {
+            string userId = Preferences.Get("UserID", string.Empty);
+            if (!string.IsNullOrEmpty(userId))
+            {
+                CurrentUser = await new FirebaseHelper().GetDBUserByUserID(userId);
+            }
         }
 
         public async Task Logout()
         {
             // Clear the stored Firebase token/session state
-            Preferences.Remove("FreshFirebaseToken"); // Replace with your actual preference key
+            Preferences.Remove("FreshFirebaseToken");
             Preferences.Remove("UserID");
             Preferences.Remove("UserDBID");
             Preferences.Remove("UserRole");
 
             // Navigate to Login Page
-            await Shell.Current.GoToAsync("//LoginPage"); // Update this navigation path as per your app's structure
+            await Shell.Current.GoToAsync("//LoginPage");
         }
-
-        // ... Other properties and methods ...
 
         // Implement INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -39,7 +57,5 @@ namespace ISafetyVer2.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
     }
 }

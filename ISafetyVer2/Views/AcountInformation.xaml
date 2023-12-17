@@ -63,7 +63,7 @@
                             Grid.Row="1"
                             BorderColor="Transparent"
                             Margin="0,20"/>
-                    <Label Text=""
+                    <Label Text="{Binding CurrentUser.UserName}"
                            TextColor="Black"
                            FontFamily="Lobster"
                            FontAttributes="Italic"
@@ -89,7 +89,7 @@
                             Grid.Row="3"
                             BorderColor="Transparent"
                             Margin="0,20"/>
-                    <Label Text=""
+                    <Label Text="{Binding CurrentUser.UserEmail}"
                            TextColor="Black"
                            FontFamily="Lobster"
                            FontAttributes="Italic"
@@ -115,7 +115,7 @@
                             Grid.Row="5"
                             BorderColor="Transparent"
                             Margin="0,20"/>
-                    <Label Text=""
+                    <Label Text="{Binding CurrentUser.UserPhoneNumber}"
                            TextColor="Black"
                            FontFamily="Lobster"
                            FontAttributes="Italic"

@@ -5,10 +5,11 @@ namespace ISafetyVer2.Views;
 
 public partial class AcountInformation : ContentPage
 {
-	public AcountInformation()
+	public AcountInformation(string userId)
     {
 		InitializeComponent();
-        
+        BindingContext = new AccountInformationViewModel(userId);
+
     }
 
     private void AIClick(object obj, EventArgs e)
