@@ -144,6 +144,11 @@
                                                     Grid.Row="10"
                                                     FontFamily="Lobster"
                                                     Margin="0,30,0,0"/>
+                                            <Image Source="{Binding MediaURL}" 
+                                                   Aspect="AspectFill"
+                                                   Grid.Row="11"
+                                                   
+                                                   />
                                         </Grid>
                                     </StackLayout>
                                 </Frame>

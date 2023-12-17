@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ISafetyVer2.Views.Community"
              Title="Community"
+             
              Shell.NavBarIsVisible="False">
 
     <ScrollView >
@@ -86,6 +87,9 @@
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
                                         <!-- Content inside your frame -->
                                             <Label Text="Catgeory Title"
@@ -154,6 +158,11 @@
                                                     Grid.Row="10"
                                                     FontFamily="Lobster"
                                                     Margin="0,30,0,0"/>
+                                            <Image Source="{Binding MediaURL}" 
+                                                   Aspect="AspectFill"
+                                                   Grid.Row="11"/>
+                                            
+                                            
                                         </Grid>
                                     </StackLayout>
                                 </Frame>
