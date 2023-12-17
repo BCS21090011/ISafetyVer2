@@ -26,7 +26,7 @@ public partial class Profile : ContentPage
 
     private void ReportHistoryOnClick(object obj, EventArgs e)
     {
-        Navigation.PushAsync(new QuickReportPage());    // Quickreport in original.
+        Navigation.PushAsync(new QuickReportHistory());    // Quickreport in original.
     }
 
 }

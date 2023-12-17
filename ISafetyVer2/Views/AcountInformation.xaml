@@ -6,7 +6,13 @@
              Shell.NavBarIsVisible="False">
     <ScrollView>
         <VerticalStackLayout>
-            <Grid >
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+            <Grid Grid.Row="0" >
                 <Grid.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="#a7e79d"
@@ -34,11 +40,95 @@
                    VerticalOptions="Center" 
                    FontAttributes="Bold"/>
             </Grid>
-            <!-- Inside your ScrollView and VerticalStackLayout -->
-            <Label Text="{Binding CurrentUser.UserEmail}" FontSize="16"/>
-            <Label Text="{Binding CurrentUser.UserName}" FontSize="16"/>
-            <!-- Add more fields as needed -->
+                <Grid Grid.Row="1" Padding="20,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
+                    <Label Text="User's Name"
+                           TextColor="Grey"
+                           FontAttributes="Bold"
+                           FontFamily="Lobster"
+                           Grid.Row="0"
+                           FontSize="18"/>
+                    <Frame  BackgroundColor="#a7e79d"
+                            CornerRadius="20"
+                            Padding="20,0"
+                            HeightRequest="50"
+                            Grid.Row="1"
+                            BorderColor="Transparent"
+                            Margin="0,20"/>
+                    <Label Text=""
+                           TextColor="Black"
+                           FontFamily="Lobster"
+                           FontAttributes="Italic"
+                           FontSize="20"
+                           Grid.Row="1"
+                           Padding="20,0"
+                           Margin="0,20"
+                           VerticalOptions="Center"
+                           />
+                    
+
+                    <Label Text="User's Email"
+                           TextColor="Grey"
+                           FontAttributes="Bold"
+                           FontFamily="Lobster"
+                           Grid.Row="2"
+                           FontSize="18"/>
+
+                    <Frame  BackgroundColor="#a7e79d"
+                            CornerRadius="20"
+                            Padding="20,0"
+                            HeightRequest="50"
+                            Grid.Row="3"
+                            BorderColor="Transparent"
+                            Margin="0,20"/>
+                    <Label Text=""
+                           TextColor="Black"
+                           FontFamily="Lobster"
+                           FontAttributes="Italic"
+                           FontSize="20"
+                           Grid.Row="3"
+                           Padding="20,0"
+                           Margin="0,20"
+                           VerticalOptions="Center"
+                           />
+
+                    
+                    <Label Text="User's Phone Number"
+                           TextColor="Grey"
+                           FontAttributes="Bold"
+                           FontFamily="Lobster"
+                           Grid.Row="4"
+                           FontSize="18"/>
+
+                    <Frame  BackgroundColor="#a7e79d"
+                            CornerRadius="20"
+                            Padding="20,0"
+                            HeightRequest="50"
+                            Grid.Row="5"
+                            BorderColor="Transparent"
+                            Margin="0,20"/>
+                    <Label Text=""
+                           TextColor="Black"
+                           FontFamily="Lobster"
+                           FontAttributes="Italic"
+                           FontSize="20"
+                           Grid.Row="5"
+                           Padding="20,0"
+                           Margin="0,20"
+                           VerticalOptions="Center"
+                           />
+
+                </Grid>
+
+            </Grid>
 
 
         </VerticalStackLayout>

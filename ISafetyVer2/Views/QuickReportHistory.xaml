@@ -7,6 +7,14 @@
     <ScrollView>
         <VerticalStackLayout>
             <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="Auto"/>
+
+
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
                 <Grid.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="#ff9898"
@@ -33,6 +41,117 @@
                    Padding="20,0" 
                    VerticalOptions="Center" 
                    FontAttributes="Bold"/>
+                </Grid>
+                <Label Text="This is your report history"
+                       FontSize="24"
+                       FontFamily="Lobster"
+                       FontAttributes="Bold"
+                       Grid.Row="1"
+                       Padding="20,20"/>
+
+                <Grid Grid.Row="2" Padding="10,10">
+                    <CollectionView ItemsSource="{Binding QuickReports}"  ItemsUpdatingScrollMode="KeepItemsInView">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                
+                                <Frame  Grid.Row="1" 
+                                        CornerRadius="10" 
+                                        VerticalOptions="StartAndExpand" 
+                                        BorderColor="Black"
+                                        Margin="10,10">
+                                    
+                                    <StackLayout>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <!-- Content inside your frame -->
+                                            <Label Text="Catgeory Title"
+                                                   Grid.Row="0"
+                                                   HorizontalOptions="Start"
+                                                   TextColor="Black"
+                                                   FontSize="32"
+                                                   FontFamily="Lobsters"
+                                                   FontAttributes="Bold"
+                                                   />
+                                            <Label Text="SubCatgeory Title"
+                                                   Grid.Row="1"
+                                                   HorizontalOptions="Start"
+                                                   TextColor="Black"
+                                                   FontSize="18"
+                                                   FontFamily="Lobsters"
+                                                   FontAttributes="Bold"
+                                                   Margin="0,10,0,0"
+                                                   />
+                                            <Label Text="{Binding Status}"
+                                                   Grid.Row="0"
+                                                   HorizontalOptions="End"
+                                                   TextColor="IndianRed"
+                                                   FontSize="14"
+                                                   FontFamily="Lobsters"
+                                                   FontAttributes="Italic"
+                                                   />
+                                            <Label Text="Quick Reported Date"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Start"
+                                                   Grid.Row="3"
+                                                   FontFamily="Lobster"
+                                                   Margin="0,30,0,0"
+                                                   />
+                                            <Label Text="{Binding ReportDateTime, StringFormat='Reported on {0:MM/dd/yyyy HH:mm}'}" 
+                                                   FontSize="16"
+                                                   Grid.Row="4"
+                                                   FontAttributes="Italic"
+                                                    />
+                                            <Label Text="Descriptions"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Start"
+                                                   Grid.Row="5"
+                                                   FontFamily="Lobster"
+                                                   Margin="0,30,0,0"
+                                                   />
+                                            <Label Text="{Binding QRDescription}" 
+                                                   FontSize="16" 
+                                                   FontAttributes="Italic" 
+                                                   TextColor="Black"
+                                                   FontFamily="Lobster"
+                                                   Grid.Row="6"/>
+
+                                            <Label Text="Map"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   Grid.Row="7"
+                                                   FontFamily="Lobster"
+                                                   Margin="0,30,0,0"/>
+
+                                            <Label  Text="Picture and Videos Uploaded"
+                                                    FontSize="16"
+                                                    FontAttributes="Bold"
+                                                    Grid.Row="10"
+                                                    FontFamily="Lobster"
+                                                    Margin="0,30,0,0"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
             </Grid>
 
 
