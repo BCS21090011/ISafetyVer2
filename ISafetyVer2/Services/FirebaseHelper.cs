@@ -8,6 +8,7 @@ using ISafetyVer2.Models;
 using Firebase.Database.Query;
 using Firebase.Storage;
 using Firebase.Auth;
+using System.Diagnostics;
 
 namespace ISafetyVer2.Services
 {
@@ -33,7 +34,12 @@ namespace ISafetyVer2.Services
                 .EqualTo(userID)
                 .OnceAsync<DBUser>();
 
-            return result.FirstOrDefault()?.Object; // Return null if there are no matches.
+            var user = result.FirstOrDefault()?.Object;
+            if (user != null)
+            {
+                user.FirebaseKey = result.FirstOrDefault()?.Key; // Set the unique Firebase key
+            }
+            return user; ; // Return null if there are no matches.
         }
 
         // Add Category:
@@ -219,6 +225,20 @@ namespace ISafetyVer2.Services
             }).ToList();
         }
 
-
+        public async Task<bool> UpdateUser(DBUser user)
+        {
+            try
+            {
+                // Use the unique key here instead of the UserID
+                await firebaseClient.Child("Users").Child(user.FirebaseKey).PutAsync(user);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions here
+                Debug.WriteLine($"Error updating user: {ex.Message}");
+                return false;
+            }
+        }
     }
 }

@@ -64,7 +64,7 @@
                        FontSize="18" 
                        Grid.Row="0"/>
                     <Entry Text="{Binding PostTitle}"
-                       Placeholder="Category Name" 
+                       
                        Grid.Row="1"
                          Margin="0,10"/>
                     
@@ -76,7 +76,7 @@
                        Grid.Row="2"
                        Margin="0,10"/>
                     <Entry Text="{Binding ReportDateTime}"
-                       Placeholder="Category Name" 
+                       
                        Grid.Row="3"
                          Margin="0,10"/>
                     
@@ -88,7 +88,7 @@
                        Grid.Row="4"
                             Margin="0,10"/>
                     <Entry Text="{Binding Location}"
-                       Placeholder="Category Name" 
+                       
                        Grid.Row="5"
                          Margin="0,10"/>
                     
@@ -99,11 +99,14 @@
                        FontSize="18" 
                        Grid.Row="6"
                             Margin="0,10"/>
-                    <Entry Text="{Binding PostDescription}"
-                       Placeholder="Category Name" 
-                       Grid.Row="7"
-                         Margin="0,10"/>
-                    
+                   
+                    <Editor 
+                        MaxLength="200"
+                        Grid.Row="7"
+                        Margin="0,50,0,20"
+                        FontSize="16" FontAttributes="Bold"
+                        Text="{Binding PostDescription}"
+                        />
 
                     <!-- Photo-->
                     <Label Text="Please selecte a photo to upload" 
@@ -111,10 +114,23 @@
                        FontSize="18" 
                        Grid.Row="8"
                             Margin="0,10"/>
-                    <Button Text="Upload Photo" Command="{Binding UploadPhotoCommand}" 
-                       
-                       Grid.Row="9" Margin="0,10"/>
+                    
+                    <Frame BorderColor="black"
+                       CornerRadius="10" 
+                       VerticalOptions="End" 
+                       Grid.Row="9" 
+                       HeightRequest="50"
+                       Margin="0,20,0,0"/>
 
+
+                    <ImageButton     Source="plus.png"
+                                 WidthRequest="25" 
+                                 HeightRequest="25" 
+                                 Grid.Row="9" 
+                                 VerticalOptions="End"  
+                                 Margin="0,0,0,15" 
+                                 Aspect="AspectFit" 
+                                 Command="{Binding UploadPhotoCommand}"/>
 
                     <Button Text="Add " 
                         Command="{Binding SubmitCommand}"

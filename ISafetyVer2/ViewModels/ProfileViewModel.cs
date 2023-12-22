@@ -13,6 +13,7 @@ namespace ISafetyVer2.ViewModels
     {
         public ICommand LogoutCommand { get; }
 
+
         private DBUser _currentUser;
         public DBUser CurrentUser
         {

@@ -33,6 +33,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+
 
 
                     </Grid.RowDefinitions>
@@ -67,7 +69,8 @@
                                         CornerRadius="10" 
                                         VerticalOptions="StartAndExpand" 
                                         BorderColor="Black"
-                                        Margin="10,10">
+                                        Margin="10,10"
+                                        HeightRequest="200">
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnFrameTapped"/>
                                     </Frame.GestureRecognizers>
@@ -170,10 +173,10 @@
                         </CarouselView.ItemTemplate>
                     </CarouselView>
                     <IndicatorView x:Name="QuickReports"
-                IndicatorColor="#a7a7a7"
-                SelectedIndicatorColor="#cd5c5c"
-                HorizontalOptions="Center"
-                Grid.Row="3"/>
+                                    IndicatorColor="#a7a7a7"
+                                    SelectedIndicatorColor="#cd5c5c"
+                                    HorizontalOptions="Center"
+                                    Grid.Row="3"/>
 
                     <!-- Community circle title-->
                     <Label Text="Community Circle" 
@@ -187,47 +190,49 @@
                            FontFamily="Lobster" />
 
 
-                    <!-- Community circle -->
-                    <Label Text="Trending Post" 
-                           TextColor="Black" 
-                           Margin="0,10,0,0" 
-                           FontSize="16" 
-                           FontAttributes="Bold"
-                           Grid.Row="5" 
-                           VerticalOptions="Center" 
-                           HorizontalOptions="Start" />
-                    <ScrollView Padding="0,10,0,0" Margin="0,10" Grid.Row="6">
-                    <StackLayout>
-                            <CollectionView  ItemsSource="{Binding AdminPosts}" ItemsUpdatingScrollMode="KeepItemsInView" >
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Frame  
+                    
+
+
+                    <CarouselView  ItemsSource="{Binding AdminPosts}"
+                                             ItemsUpdatingScrollMode="KeepItemsInView" 
+                                              Margin="0,10" Grid.Row="5"
+                                   Loop="False" IndicatorView="AdminPost">
+                        <CarouselView.ItemTemplate>
+
+                            <DataTemplate>
+                                <Frame  
                                         CornerRadius="10" 
                                         VerticalOptions="StartAndExpand" 
                                         BorderColor="Black"
+                                            
+                                            HeightRequest="200"
+                                    Margin="10,10"
                                         >
-                                            <StackLayout>
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                    </Grid.RowDefinitions>
-                                                    <!-- Content inside your frame -->
-                                                    <Label Text="Post Title"
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnFrameTapped2"/>
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <!-- Content inside your frame -->
+                                            <Label Text="{Binding PostTitle}" 
                                                    Grid.Row="0"
                                                    HorizontalOptions="Start"
                                                    TextColor="Black"
@@ -236,13 +241,8 @@
                                                    FontAttributes="Bold"
                                                    />
 
-                                                    <Label Text="{Binding PostTitle}" 
-                                                   FontSize="16" 
-                                                   FontAttributes="Italic" 
-                                                   TextColor="Black"
-                                                   FontFamily="Lobster"
-                                                   Grid.Row="1"/>
-                                                    <Label Text="Quick Reported Date"
+
+                                            <Label Text="Quick Reported Date"
                                                    FontSize="16"
                                                    FontAttributes="Bold"
                                                    VerticalOptions="Start"
@@ -250,28 +250,28 @@
                                                    FontFamily="Lobster"
                                                    Margin="0,30,0,0"
                                                    />
-                                                    <Label Text="{Binding ReportDateTime}" 
+                                            <Label Text="{Binding ReportDateTime}" 
                                                    FontSize="16" 
                                                    FontAttributes="Italic" 
                                                    TextColor="Black"
                                                    FontFamily="Lobster"
                                                    Grid.Row="3"/>
-                                                    <Label Text="Descriptions"
+                                            <Label Text="Descriptions"
                                                    FontSize="16"
                                                    FontAttributes="Bold"
                                                    VerticalOptions="Start"
                                                    Grid.Row="4"
                                                    FontFamily="Lobster"
-                                                   Margin="0,30,0,0"
+                                                   Margin="0,40,0,0"
                                                    />
-                                                    <Label Text="{Binding PostDescription}" 
+                                            <Label Text="{Binding PostDescription}" 
                                                    FontSize="16" 
                                                    FontAttributes="Italic" 
                                                    TextColor="Black"
                                                    FontFamily="Lobster"
                                                    Grid.Row="5"/>
 
-                                                    <Label Text="Location"
+                                            <Label Text="Location"
                                                    FontSize="16"
                                                    FontAttributes="Bold"
                                                    VerticalOptions="Start"
@@ -279,36 +279,35 @@
                                                    FontFamily="Lobster"
                                                    Margin="0,30,0,0"
                                                    />
-                                                    <Label Text="{Binding Location}" 
+                                            <Label Text="{Binding Location}" 
                                                    FontSize="16" 
                                                    FontAttributes="Italic" 
                                                    TextColor="Black"
                                                    FontFamily="Lobster"
                                                    Grid.Row="7"/>
 
-                                                    <Label  Text="Picture and Videos Uploaded"
+                                            <Label  Text="Picture and Videos Uploaded"
                                                     FontSize="16"
                                                     FontAttributes="Bold"
                                                     Grid.Row="8"
                                                     FontFamily="Lobster"
                                                     Margin="0,30,0,0"/>
-                                                    <Image Source="{Binding MediaURL}" 
+                                            <Image Source="{Binding MediaURL}" 
                                                    Aspect="AspectFill"
                                                    Grid.Row="9"/>
 
 
-                                                </Grid>
-                                            </StackLayout>
-                                        </Frame>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-                    
-                    </StackLayout>
-
-
-
-                    </ScrollView>
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <IndicatorView x:Name="AdminPost"
+                                    IndicatorColor="#a7a7a7"
+                                    SelectedIndicatorColor="#cd5c5c"
+                                    HorizontalOptions="Center"
+                                    Grid.Row="6"/>
 
 
                 </Grid>

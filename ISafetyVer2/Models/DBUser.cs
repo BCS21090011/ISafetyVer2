@@ -13,5 +13,6 @@ namespace ISafetyVer2.Models
         public string UserPhoneNumber { get; set; }
         public string UserEmail { get; set; }
         public string Role { get; set; }
+        public string FirebaseKey { get; set; }
     }
 }

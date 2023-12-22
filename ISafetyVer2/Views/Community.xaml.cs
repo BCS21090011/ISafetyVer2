@@ -30,4 +30,23 @@ public partial class Community : ContentPage
             }
         }
     }
+
+    private void OnFrameTapped2(object sender, EventArgs e)
+    {
+        if (sender is Frame frame)
+        {
+            if (frameIsExpanded == true)
+            {
+                // Currently expanded.
+                frame.HeightRequest = 200;  // Collapse it.
+                frameIsExpanded = false;
+            }
+            else
+            {
+                // Currently collapsed.
+                frame.HeightRequest = -1;  // Expand it.
+                frameIsExpanded = true;
+            }
+        }
+    }
 }
