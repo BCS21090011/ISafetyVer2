@@ -20,7 +20,19 @@ public partial class CommunityViewModel : INotifyPropertyChanged
             }
         }
     }
-
+    private ObservableCollection<AdminPost> _adminPosts;
+    public ObservableCollection<AdminPost> AdminPosts
+    {
+        get => _adminPosts;
+        set
+        {
+            if (_adminPosts != value)
+            {
+                _adminPosts = value;
+                RaisePropertyChanged(nameof(AdminPosts));
+            }
+        }
+    }
     public CommunityViewModel()
     {
         // Realtime:
@@ -28,6 +40,11 @@ public partial class CommunityViewModel : INotifyPropertyChanged
             .Child("QuickReports")
             .AsObservable<QuickReport>()
             .Subscribe(qr => LoadQuickReports());
+
+        IDisposable adminPostObservable = new FirebaseHelper().firebaseClient
+            .Child("AdminPosts")
+            .AsObservable<AdminPost>()
+            .Subscribe(ap => LoadAdminPosts());
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
@@ -49,7 +66,23 @@ public partial class CommunityViewModel : INotifyPropertyChanged
         }
         
     }
-
+   
+    private async void LoadAdminPosts()
+    {
+        try
+        {
+            var posts = await new FirebaseHelper().GetAllAdminPosts(); // Implement this method
+            AdminPosts = new ObservableCollection<AdminPost>();
+            foreach (var post in posts)
+            {
+                AdminPosts.Add(post);
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions
+        }
+    }
     public void RaisePropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

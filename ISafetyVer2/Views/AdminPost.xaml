@@ -63,7 +63,7 @@
                        TextColor="Grey" 
                        FontSize="18" 
                        Grid.Row="0"/>
-                    <Entry 
+                    <Entry Text="{Binding PostTitle}"
                        Placeholder="Category Name" 
                        Grid.Row="1"
                          Margin="0,10"/>
@@ -75,7 +75,7 @@
                        FontSize="18" 
                        Grid.Row="2"
                        Margin="0,10"/>
-                    <Entry 
+                    <Entry Text="{Binding ReportDateTime}"
                        Placeholder="Category Name" 
                        Grid.Row="3"
                          Margin="0,10"/>
@@ -87,7 +87,7 @@
                        FontSize="18" 
                        Grid.Row="4"
                             Margin="0,10"/>
-                    <Entry 
+                    <Entry Text="{Binding Location}"
                        Placeholder="Category Name" 
                        Grid.Row="5"
                          Margin="0,10"/>
@@ -99,7 +99,7 @@
                        FontSize="18" 
                        Grid.Row="6"
                             Margin="0,10"/>
-                    <Entry 
+                    <Entry Text="{Binding PostDescription}"
                        Placeholder="Category Name" 
                        Grid.Row="7"
                          Margin="0,10"/>
@@ -111,13 +111,13 @@
                        FontSize="18" 
                        Grid.Row="8"
                             Margin="0,10"/>
-                    <Entry 
-                       Placeholder="Category Name" 
+                    <Button Text="Upload Photo" Command="{Binding UploadPhotoCommand}" 
+                       
                        Grid.Row="9" Margin="0,10"/>
 
 
                     <Button Text="Add " 
-                        
+                        Command="{Binding SubmitCommand}"
                         WidthRequest="100" 
                         HorizontalOptions="End" 
                         Grid.Row="10"

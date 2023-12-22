@@ -150,7 +150,7 @@ namespace ISafetyVer2.Services
                 .OrderBy("UserID")
                 .EqualTo(userID)
                 .OnceAsync<QuickReport>();
-                
+
             return result.Select(item => new QuickReport
             {
                 QRID = item.Key,
@@ -192,6 +192,32 @@ namespace ISafetyVer2.Services
         // General:
 
         // Get file info using URL:
+        //Admin POst
+        // In FirebaseHelper.cs
+        public async Task<string> AddAdminPost(AdminPost post)
+        {
+            var result = await firebaseClient.Child("AdminPosts").PostAsync(post);
+            return result.Key;  // Returns the unique ID of the new post.
+        }
+
+
+        //For adminpost fetching dataafrom firebaserealtimedatabase
+        public async Task<List<AdminPost>> GetAllAdminPosts()
+        {
+            var result = await firebaseClient
+                .Child("AdminPosts")
+                .OnceAsync<AdminPost>();
+
+            return result.Select(item => new AdminPost
+            {
+                PostID = item.Key,
+                PostTitle = item.Object.PostTitle,
+                ReportDateTime = item.Object.ReportDateTime,
+                PostDescription = item.Object.PostDescription,
+                Location = item.Object.Location,
+                MediaURL = item.Object.MediaURL
+            }).ToList();
+        }
 
 
     }

@@ -11,9 +11,12 @@ namespace ISafetyVer2.Models
         public string PostID { get; set; }
         public string PostTitle { get; set; }
 
-        public DateTime ReportDateTime { get; set; }
+        public string ReportDateTime { get; set; }
         public string PostDescription { get; set; }
 
+        public string Location { get; set; }
+
         public string MediaURL { get; set; }
+        
     }
 }
