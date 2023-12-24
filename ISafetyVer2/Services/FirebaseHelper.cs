@@ -10,6 +10,7 @@ using Firebase.Storage;
 using Firebase.Auth;
 using System.Diagnostics;
 
+
 namespace ISafetyVer2.Services
 {
     internal class FirebaseHelper
@@ -46,6 +47,26 @@ namespace ISafetyVer2.Services
             };
         }
 
+        // Get User by Role:
+        public async Task<List<DBUser>> GetDBUserByRole(string role)
+        {
+            IReadOnlyCollection<FirebaseObject<DBUser>> result = await firebaseClient
+                .Child("Users")
+                .OrderBy("Role")
+                .EqualTo(role)
+                .OnceAsync<DBUser>();
+
+            return result.Select(item => new DBUser
+            {
+                UserID = item.Object.UserID,
+                UserName = item.Object.UserName,
+                UserPhoneNumber = item.Object.UserPhoneNumber,
+                UserEmail = item.Object.UserEmail,
+                Role = item.Object.Role,
+                FirebaseKey = item.Key
+            }).ToList();
+        }
+
         // Add Category:
         public async Task<string> AddCategory(Category category)
         {
@@ -59,7 +80,8 @@ namespace ISafetyVer2.Services
             return (await firebaseClient.Child("Categories").OnceAsync<Category>()).Select(item => new Category
             {
                 CategoryID = item.Key,
-                CategoryName = item.Object.CategoryName
+                CategoryName = item.Object.CategoryName,
+                AuthorityID = item.Object.AuthorityID
             }).ToList();
         }
 
@@ -76,8 +98,26 @@ namespace ISafetyVer2.Services
             return new Category
             {
                 CategoryID = cat.Key,
-                CategoryName = cat.Object.CategoryName
+                CategoryName = cat.Object.CategoryName,
+                AuthorityID = cat.Object.AuthorityID
             };
+        }
+
+        // Get Category by AuthorityID:
+        public async Task<List<Category>> GetCategoryByAuthorityID(string authorityID)
+        {
+            IReadOnlyCollection<FirebaseObject<Category>> result = await firebaseClient
+                .Child("Category")
+                .OrderBy("AuthorityID")
+                .EqualTo(authorityID)
+                .OnceAsync<Category>();
+
+            return result.Select(item => new Category
+            {
+                CategoryID = item.Key,
+                CategoryName = item.Object.CategoryName,
+                AuthorityID = item.Object.AuthorityID
+            }).ToList();
         }
 
         // Add SubCategory:
@@ -176,6 +216,30 @@ namespace ISafetyVer2.Services
                 .Child("QuickReports")
                 .OrderBy("UserID")
                 .EqualTo(userID)
+                .OnceAsync<QuickReport>();
+
+            return result.Select(item => new QuickReport
+            {
+                QRID = item.Key,
+                UserID = item.Object.UserID,
+                SubCatID = item.Object.SubCatID,
+                ReportDateTime = item.Object.ReportDateTime,
+                QRDescription = item.Object.QRDescription,
+                Latitude = item.Object.Latitude,
+                Longitude = item.Object.Longitude,
+                Radius = item.Object.Radius,
+                MediaURL = item.Object.MediaURL,
+                Status = item.Object.Status
+            }).ToList();
+        }
+
+        // Get QuickReport by SubCatID:
+        public async Task<List<QuickReport>> GetAllQuickReportBySubCatID(string subcatID)
+        {
+            IReadOnlyCollection<FirebaseObject<QuickReport>> result = await firebaseClient
+                .Child("QuickReports")
+                .OrderBy("SubCatID")
+                .EqualTo(subcatID)
                 .OnceAsync<QuickReport>();
 
             return result.Select(item => new QuickReport

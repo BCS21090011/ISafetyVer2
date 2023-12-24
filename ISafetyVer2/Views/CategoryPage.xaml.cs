@@ -5,13 +5,25 @@ namespace ISafetyVer2.Views;
 
 public partial class CategoryPage : ContentPage
 {
+	public List<DBUser> authorities {  get; set; }
+
 	public CategoryPage()
 	{
 		InitializeComponent();
+		LoadAuthoritiesIntoPicker();
+    }
+
+	private async void LoadAuthoritiesIntoPicker()
+	{
+		authorities = await new FirebaseHelper().GetDBUserByRole("Admin");
+		CatAuthoPicker.ItemsSource = authorities;
+		CatAuthoPicker.ItemDisplayBinding = new Binding("UserName");
 	}
 
 	private async void AddCategoryBtnOnClick(object sender, EventArgs e)
 	{
+		DBUser selectedAuthority = (DBUser)CatAuthoPicker.SelectedItem;
+
 		// Validate inputs:
 		if (string.IsNullOrWhiteSpace(CategoryNameEntry.Text))
 		{
@@ -19,9 +31,16 @@ public partial class CategoryPage : ContentPage
 			return;
 		}
 
+		if (selectedAuthority == null)
+		{
+			await DisplayAlert("Alert", "Authority can't be empty!", "OK");
+			return;
+		}
+
 		await new FirebaseHelper().AddCategory(new Category
 		{
 			CategoryName = CategoryNameEntry.Text,
+			AuthorityID = selectedAuthority.UserID
 		});
 
 		// Inform insertion completed:

@@ -10,5 +10,6 @@ namespace ISafetyVer2.Models
     {
         public string CategoryID { get; set; }
         public string CategoryName { get; set; }
+        public string AuthorityID { get; set; }
     }
 }

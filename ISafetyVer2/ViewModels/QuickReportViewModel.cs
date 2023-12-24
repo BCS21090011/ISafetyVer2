@@ -225,7 +225,7 @@ namespace ISafetyVer2.ViewModels
             if (await ValidateInput() == true)
             {
                 string qrID = await InsertQRToDB();
-                await App.Current.MainPage.DisplayAlert("Completed", $"Sub Category: \"{qrID}\" added!", "Back");
+                await App.Current.MainPage.DisplayAlert("Completed", $"Quick Report: \"{qrID}\" added!", "Back");
                 await _navigation.PopAsync();
             }
         }

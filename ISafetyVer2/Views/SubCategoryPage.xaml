@@ -54,6 +54,10 @@
                            VerticalOptions="Start"
                            HorizontalOptions="Start"
                            Text="Select a category"
+                            FontSize="18"
+                           FontFamily="Lobster"
+                           
+                           TextColor="Grey"
                            />
                     <Picker x:Name="CategoryPicker" 
                             VerticalOptions="End"
@@ -62,6 +66,10 @@
                            VerticalOptions="Start"
                            HorizontalOptions="Start"
                            Text="Enter a sub-category"
+                           FontSize="18"
+                           FontFamily="Lobster"
+                           
+                           TextColor="Grey"
                            />
                     <Entry x:Name="SubCatNameEntry"  
                            VerticalOptions="End"
@@ -70,6 +78,10 @@
                            VerticalOptions="Start"
                            HorizontalOptions="Start"
                            Text="Enter the area radius"
+                           FontSize="18"
+                           FontFamily="Lobster"
+                           
+                           TextColor="Grey"
                            />
                     <Entry x:Name="AreaRadiusEntry" 
                            Keyboard="Numeric" 
@@ -80,6 +92,10 @@
                            VerticalOptions="Start"
                            HorizontalOptions="Start"
                            Text="Enter the danger level"
+                           FontSize="18"
+                           FontFamily="Lobster"
+                           
+                           TextColor="Grey"
                            />
                     <Entry x:Name="DangerLvlEntry" 
                            Keyboard="Numeric" 
@@ -91,6 +107,10 @@
                            VerticalOptions="Start"
                            HorizontalOptions="Start"
                            Text="Enter the safety tips description"
+                           FontSize="18"
+                           FontFamily="Lobster"
+                           
+                           TextColor="Grey"
                            />
                     <Editor x:Name="SafetyTipsDescriptionEditor" 
                             HeightRequest="100"
