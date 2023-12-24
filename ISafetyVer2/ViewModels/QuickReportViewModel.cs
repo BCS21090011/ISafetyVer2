@@ -28,7 +28,10 @@ namespace ISafetyVer2.ViewModels
         private string _descriptionText;
 
         public string MediaPath { get; set; } = null;
+        public string MediaType { get; set; } = null;
         public double IncidentRadius { get; set; } = 0;
+
+        public bool Anonymous { get; set; } = false;
 
         public Category SelectedCategory
         {
@@ -138,15 +141,27 @@ namespace ISafetyVer2.ViewModels
         public async Task<string> InsertQRToDB()
         {
             string mediaURL = "NoMedia";    // The MediaURL will be NoMedia if there is none.
+            string mediaType = "NoMedia";
+            string userID = Preferences.Get("UserID", "NoUserID");
+
+            if (Anonymous == true)
+            {
+                userID = "Anonymous";
+            }
 
             if (MediaPath != null)
             {
                 mediaURL = await new FirebaseHelper().UploadMediaToFirebase(MediaPath);
             }
 
+            if (MediaType != null)
+            {
+                mediaType = MediaType;
+            }
+
             string qrID = await new FirebaseHelper().AddQuickReport(new QuickReport
             {
-                UserID = Preferences.Get("UserID", "NoUserID"),
+                UserID = userID,
                 SubCatID = SelectedSubCat.SubCatID,
                 ReportDateTime = DateTime.Now,  // Get current DateTime.
                 QRDescription = DescriptionText,
@@ -154,6 +169,7 @@ namespace ISafetyVer2.ViewModels
                 Longitude = IncidentLocation.Longitude,
                 Radius = IncidentRadius,
                 MediaURL = mediaURL,
+                MediaType = mediaType,
                 Status = "Pending"
             });
 

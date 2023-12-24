@@ -41,12 +41,11 @@
                    Text="Annonymouse?" TextColor="Black" FontSize="18"
                    FontFamily="Lobster" Margin="60,0,0,0" />
 
-            <Button Grid.Row="1" HorizontalOptions="Center"
-                    HeightRequest="40" BackgroundColor="#ffc800"
-                    Margin="100,0,0,30" Text="Yes"   />
-            <Button Grid.Row="1" HorizontalOptions="Center"
-                     HeightRequest="40" BackgroundColor="#ffc800"
-                    Margin="230,0,0,30" Text="No"/>
+
+            <CheckBox Grid.Row="1" HorizontalOptions="Center"
+                     HeightRequest="40" CheckedChanged="AnonymousCheckBoxOnChange"
+                    Margin="230,0,0,30"/>
+
 
             <Frame
             Grid.Row="2"
@@ -223,14 +222,15 @@
                                 <maps:Map Grid.Row="0" x:Name="map" MapType="Hybrid" IsTrafficEnabled="True" IsShowingUser="True" MapClicked="MapOnClicked">
                                 </maps:Map>
                                 <Label x:Name="RadiusSliderLbl" Text="Radius: 0 meters" Grid.Row="1" VerticalOptions="End" Margin="0,0" WidthRequest="200" HorizontalOptions="Center"/>
-                                <Slider x:Name="RadiusSlider" Grid.Row="2" VerticalOptions="End" Margin="0,0" WidthRequest="200" HorizontalOptions="Center" Minimum="0" Maximum="1000" Value="0"  ValueChanged="RadiusSliderOnChange"/>
+                                <Slider x:Name="RadiusSlider" Grid.Row="2" VerticalOptions="End" Margin="0,0" WidthRequest="200" HorizontalOptions="Center" Minimum="0" Maximum="10000" Value="0"  ValueChanged="RadiusSliderOnChange"/>
                                 <Button Grid.Row="3" x:Name="CloseBtn" 
                                         VerticalOptions="End" 
                                         Margin="0,30" 
                                         Text="Close" 
-                                        WidthRequest="600" 
-                                        HorizontalOptions="Center" 
+                                        WidthRequest="100" 
+                                        HorizontalOptions="End" 
                                         Clicked="HideMapGrid"
+                                        CornerRadius="10"
                                         BackgroundColor="#ffc800"
                                         BorderColor="White"
                                         />

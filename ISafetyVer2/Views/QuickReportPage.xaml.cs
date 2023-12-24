@@ -41,6 +41,11 @@ public partial class QuickReportPage : ContentPage
 		((QuickReportViewModel)BindingContext).IncidentLocation = e.Location;
     }
 
+	private void AnonymousCheckBoxOnChange(Object sender, CheckedChangedEventArgs e)
+	{
+		((QuickReportViewModel)BindingContext).Anonymous = e.Value;
+	}
+
     private async void UploadImgBtnOnClick(Object sender, EventArgs e)
 	{
 		try
@@ -54,6 +59,7 @@ public partial class QuickReportPage : ContentPage
             }
 
 			((QuickReportViewModel)BindingContext).MediaPath = filePath;
+			((QuickReportViewModel)BindingContext).MediaType = "Img";
 		}
 		catch (Exception ex)
 		{
@@ -73,6 +79,7 @@ public partial class QuickReportPage : ContentPage
             }
 
             ((QuickReportViewModel)BindingContext).MediaPath = filePath;
+            ((QuickReportViewModel)BindingContext).MediaType = "Vid";
         }
         catch (Exception ex)
         {

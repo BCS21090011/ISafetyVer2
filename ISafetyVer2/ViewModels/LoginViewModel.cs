@@ -72,8 +72,6 @@ namespace ISafetyVer2.ViewModels
                 DBUser userDB = await new FirebaseHelper().GetDBUserByUserID(userID);
 
                 string serializedContent = JsonConvert.SerializeObject(content);
-                Preferences.Set("UserFirebaseKey", userDB.FirebaseKey);
-                Preferences.Set("FreshFirebaseToken", serializedContent);
                 Preferences.Set("UserID", userID);
                 Preferences.Set("UserDBID", userDB.UserID);
                 Preferences.Set("UserRole", userDB.Role);

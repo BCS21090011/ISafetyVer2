@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ISafetyVer2.Views.MainPage"
              Title="MainPage"
@@ -13,12 +14,14 @@
 
             <Grid x:Name="SwipeArea" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="150" />
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition Height="100"/>
-
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    
 
 
 
@@ -117,10 +120,16 @@
                 <Label Grid.Row="2" Grid.ColumnSpan="2" Text="Safety Issues Nearby"  TextColor="black" 
             HorizontalOptions="Start" FontSize="Large" FontAttributes="Bold" Margin="0,30,0,0" FontFamily="Lobster"/>
 
+                
+                <maps:Map  x:Name="map" MapType="Hybrid"  
+                           IsTrafficEnabled="True" 
+                           IsShowingUser="True"
+                           Grid.ColumnSpan="2" Grid.Row="3" HeightRequest="250" Margin="0,20"
+                           >
+                </maps:Map>
+                
 
-
-
-                <Frame Grid.Row="4" Grid.ColumnSpan="2"
+                <Frame Grid.Row="5" Grid.ColumnSpan="2"
                        HeightRequest="75" CornerRadius="50" BorderColor="White" 
                        Margin="0,0,0,0" >
                     <Frame.Background>
@@ -134,8 +143,8 @@
                     </Frame.Background>
                 </Frame>
 
-                <Label Grid.Row="4" Grid.ColumnSpan="2" Text="Swipe right for emergency" 
-                       FontSize="20" FontAttributes="Bold" Margin="70,35,0,0" TextColor="White"/>
+                <Label Grid.Row="5" Grid.ColumnSpan="2" Text="Swipe right for emergency" 
+                       FontSize="20" FontAttributes="Bold" Margin="70,20,0,0" TextColor="White"/>
 
                 <Grid x:Name="OverlayGrid" IsVisible="False" HorizontalOptions="Center" VerticalOptions="Center" Grid.RowSpan="6" Grid.ColumnSpan="2">
 
@@ -160,7 +169,7 @@
                 </Grid>
                 
                 <ImageButton x:Name="SwipeButton" Source="sos.png"  WidthRequest="70" HeightRequest="70" CornerRadius="40" 
-                        Grid.ColumnSpan="2" Margin="0,0,0,0" Grid.Row="4" HorizontalOptions="Start"  />
+                        Grid.ColumnSpan="2" Margin="0,0,0,0" Grid.Row="5" HorizontalOptions="Start"  />
 
             </Grid>
 

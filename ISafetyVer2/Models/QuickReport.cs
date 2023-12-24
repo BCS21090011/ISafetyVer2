@@ -17,6 +17,7 @@ namespace ISafetyVer2.Models
         public double Longitude { get; set; }
         public double Radius {  get; set; }
         public string MediaURL {  get; set; }
+        public string MediaType { get; set; }
         public string Status { get; set; }
     }
 }

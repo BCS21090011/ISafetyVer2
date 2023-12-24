@@ -7,8 +7,8 @@ namespace ISafetyVer2.ViewModels;
 
 public partial class CommunityViewModel : INotifyPropertyChanged
 {
-    private ObservableCollection<QuickReport> _quickReports { get; set; }
-    public ObservableCollection<QuickReport> QuickReports
+    private ObservableCollection<QRDetailed> _quickReports { get; set; }
+    public ObservableCollection<QRDetailed> QuickReports
     {
         get => _quickReports;
         set
@@ -53,8 +53,8 @@ public partial class CommunityViewModel : INotifyPropertyChanged
     {
         try 
         {
-            var reports = await new FirebaseHelper().GetAllQuickReportByUserID(Preferences.Get("UserID", "NoUserID"));
-            QuickReports = new ObservableCollection<QuickReport>();
+            var reports = await new FirebaseHelper().GetAllQRDetailedByUserID(Preferences.Get("UserID", "NoUserID"));
+            QuickReports = new ObservableCollection<QRDetailed>();
             foreach (var report in reports)
             {
                 QuickReports.Add(report);
@@ -62,7 +62,7 @@ public partial class CommunityViewModel : INotifyPropertyChanged
         }
         catch(Exception ex) 
         {
-            // Wish nothing bad happens :D
+            LoadQuickReports();
         }
         
     }
@@ -80,7 +80,7 @@ public partial class CommunityViewModel : INotifyPropertyChanged
         }
         catch (Exception ex)
         {
-            // Handle exceptions
+            LoadAdminPosts();
         }
     }
     public void RaisePropertyChanged(string propertyName)

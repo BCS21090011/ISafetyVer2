@@ -34,12 +34,16 @@ namespace ISafetyVer2.Services
                 .EqualTo(userID)
                 .OnceAsync<DBUser>();
 
-            var user = result.FirstOrDefault()?.Object;
-            if (user != null)
+            FirebaseObject<DBUser> user = result.FirstOrDefault();
+            return new DBUser
             {
-                user.FirebaseKey = result.FirstOrDefault()?.Key; // Set the unique Firebase key
-            }
-            return user; ; // Return null if there are no matches.
+                UserID = user.Object.UserID,
+                UserName = user.Object.UserName,
+                UserPhoneNumber = user.Object.UserPhoneNumber,
+                UserEmail = user.Object.UserEmail,
+                Role = user.Object.Role,
+                FirebaseKey = user.Key
+            };
         }
 
         // Add Category:
@@ -57,6 +61,23 @@ namespace ISafetyVer2.Services
                 CategoryID = item.Key,
                 CategoryName = item.Object.CategoryName
             }).ToList();
+        }
+
+        // Get Category by CategoryID:
+        public async Task<Category> GetCategoryByCategoryID(string categoryID)
+        {
+            IReadOnlyCollection<FirebaseObject<Category>> result = await firebaseClient
+                .Child("Category")
+                .OrderByKey()
+                .EqualTo(categoryID)
+                .OnceAsync<Category>();
+
+            FirebaseObject<Category> cat = result.FirstOrDefault();
+            return new Category
+            {
+                CategoryID = cat.Key,
+                CategoryName = cat.Object.CategoryName
+            };
         }
 
         // Add SubCategory:
@@ -169,6 +190,21 @@ namespace ISafetyVer2.Services
                 Radius = item.Object.Radius,
                 MediaURL = item.Object.MediaURL,
                 Status = item.Object.Status
+            }).ToList();
+        }
+
+        // Get all QRDetailed by UserID:
+        public async Task<List<QRDetailed>> GetAllQRDetailedByUserID(string userID)
+        {
+            List<QuickReport> qrs = await GetAllQuickReportByUserID(userID);
+            List<SubCategory> subcats = await GetAllSubCategories();
+            List<Category> cats = await GetAllCategories();
+
+            return qrs.Select(qr => new QRDetailed
+            {
+                QR = qr,
+                QRSubCat = subcats.FirstOrDefault(sc => sc.SubCatID == qr.SubCatID),
+                QRCat = cats.FirstOrDefault(c => c.CategoryID == (subcats.FirstOrDefault(sc => sc.SubCatID == qr.SubCatID).CategoryID))
             }).ToList();
         }
 
