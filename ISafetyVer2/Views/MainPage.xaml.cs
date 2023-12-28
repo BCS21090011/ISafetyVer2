@@ -1,4 +1,8 @@
+using ISafetyVer2.ViewModels;
+using Microsoft.Maui.Controls.Maps;
 using System.Timers;
+using ISafetyVer2.Models;
+using ISafetyVer2.Services;
 
 namespace ISafetyVer2.Views;
 
@@ -6,6 +10,7 @@ namespace ISafetyVer2.Views;
 public partial class MainPage : ContentPage
 {
     private string userRole;
+    private List<QuickReport> QR { get; set; } = new List<QuickReport>();
 	public MainPage()
 	{
         InitializeComponent();
@@ -13,8 +18,9 @@ public partial class MainPage : ContentPage
         var panGesture = new PanGestureRecognizer();
         panGesture.PanUpdated += OnPanUpdated;
         SwipeButton.GestureRecognizers.Add(panGesture);
-        
-        BindingContext = this;
+
+        // BindingContext = new MainPageViewModel();
+        GetAllQuickReport();
     }
 
     protected override void OnAppearing()
@@ -147,6 +153,60 @@ public partial class MainPage : ContentPage
             DisplayAlert("Emergency Call", "Calling emergency services!", "OK");
             OverlayGrid.IsVisible = false; // Hide overlay after triggering the call
 
+            if (PhoneDialer.Default.IsSupported)
+            {
+                PhoneDialer.Default.Open("019-650-2592");
+            }
+
         });
+    }
+
+    private async void GetAllQuickReport()
+    {
+        QR = await new FirebaseHelper().GetAllQuickReport();
+
+    }
+
+    private void MapAddLocation()
+    {
+        foreach (QuickReport report in ((MainPageViewModel)BindingContext).QR)
+        {
+            MapAddLocation(report.Latitude, report.Longitude, report.Radius);
+        }
+    }
+
+    private void MapAddLocation(double latitude, double longitude, double radius)
+    {
+        // Clear pins and circles:
+        map.Pins.Clear();
+        map.MapElements.Clear();
+
+        if (radius == 0)
+        {
+            map.Pins.Add(new Pin
+            {
+                Label = "Location",
+                Location = new Location
+                {
+                    Latitude = latitude,
+                    Longitude = longitude
+                }
+            });
+        }
+        else
+        {
+            map.MapElements.Add(new Circle
+            {
+                Center = new Location
+                {
+                    Latitude = latitude,
+                    Longitude = longitude
+                },
+                Radius = new Microsoft.Maui.Maps.Distance(radius),
+                StrokeColor = Color.FromArgb("#B0FF0000"),
+                StrokeWidth = 8,
+                FillColor = Color.FromArgb("#70FF0000")
+            });
+        }
     }
 }

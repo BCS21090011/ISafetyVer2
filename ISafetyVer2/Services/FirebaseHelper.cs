@@ -89,7 +89,7 @@ namespace ISafetyVer2.Services
         public async Task<Category> GetCategoryByCategoryID(string categoryID)
         {
             IReadOnlyCollection<FirebaseObject<Category>> result = await firebaseClient
-                .Child("Category")
+                .Child("Categories")
                 .OrderByKey()
                 .EqualTo(categoryID)
                 .OnceAsync<Category>();
@@ -107,7 +107,7 @@ namespace ISafetyVer2.Services
         public async Task<List<Category>> GetCategoryByAuthorityID(string authorityID)
         {
             IReadOnlyCollection<FirebaseObject<Category>> result = await firebaseClient
-                .Child("Category")
+                .Child("Categories")
                 .OrderBy("AuthorityID")
                 .EqualTo(authorityID)
                 .OnceAsync<Category>();

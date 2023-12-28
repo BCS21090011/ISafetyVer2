@@ -1,3 +1,4 @@
+using ISafetyVer2.ViewModels;
 namespace ISafetyVer2.Views;
 
 public partial class ReportedCase : ContentPage
@@ -6,7 +7,8 @@ public partial class ReportedCase : ContentPage
     public ReportedCase()
 	{
 		InitializeComponent();
-	}
+        BindingContext = new ReportedCaseViewModel();
+    }
 
 
 

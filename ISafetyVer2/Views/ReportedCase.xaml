@@ -62,10 +62,11 @@
                            TextColor="Grey"
                            Grid.Row="0"/>
 
-                    <CarouselView  Grid.Row="1" Loop="False" IndicatorView="QuickReports1" ItemsUpdatingScrollMode="KeepItemsInView">
+                    <CarouselView   Loop="False"  ItemsSource="{Binding QuickReports}"
+                                   IndicatorView="QuickReports1" ItemsUpdatingScrollMode="KeepItemsInView">
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
-                                <Frame  Grid.Row="2" 
+                                <Frame  Grid.Row="1" 
                                         CornerRadius="10" 
                                         VerticalOptions="StartAndExpand" 
                                         BorderColor="Black"
@@ -94,7 +95,7 @@
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
                                             <!-- Content inside your frame -->
-                                            <Label Text="Catgeory Title"
+                                            <Label Text="{Binding QRCat.CategoryName}"
                                                    Grid.Row="0"
                                                    HorizontalOptions="Start"
                                                    TextColor="Black"
@@ -102,7 +103,7 @@
                                                    FontFamily="Lobsters"
                                                    FontAttributes="Bold"
                                                    />
-                                            <Label Text="SubCatgeory Title"
+                                            <Label Text="{Binding QRSubCat.SubCatName}"
                                                    Grid.Row="1"
                                                    HorizontalOptions="Start"
                                                    TextColor="Black"
@@ -111,7 +112,7 @@
                                                    FontAttributes="Bold"
                                                    Margin="0,10,0,0"
                                                    />
-                                            <Label Text="Status"
+                                            <Label Text="{Binding QR.Status}" 
                                                    Grid.Row="0"
                                                    HorizontalOptions="End"
                                                    TextColor="IndianRed"
@@ -127,7 +128,7 @@
                                                    FontFamily="Lobster"
                                                    Margin="0,30,0,0"
                                                    />
-                                            <Label Text="19/2020/21'}" 
+                                            <Label Text="{Binding QR.ReportDateTime, StringFormat='{0:MM/dd/yyyy}'}"
                                                    FontSize="16"
                                                    Grid.Row="4"
                                                    FontAttributes="Italic"
@@ -140,27 +141,31 @@
                                                    FontFamily="Lobster"
                                                    Margin="0,30,0,0"
                                                    />
-                                            <Label Text="daefaiuegbaiweuhgaoguaeg" 
+                                            <Label Text="{Binding QR.QRDescription}" 
                                                    FontSize="16" 
                                                    FontAttributes="Italic" 
                                                    TextColor="Black"
                                                    FontFamily="Lobster"
                                                    Grid.Row="6"/>
+                                            
 
-                                            <Label Text="Map"
+                                            <Label Text="Picture and Videos Uploaded"
                                                    FontSize="16"
                                                    FontAttributes="Bold"
                                                    Grid.Row="7"
                                                    FontFamily="Lobster"
                                                    Margin="0,30,0,0"/>
 
-                                            <Label  Text="Picture and Videos Uploaded"
-                                                    FontSize="16"
-                                                    FontAttributes="Bold"
-                                                    Grid.Row="10"
-                                                    FontFamily="Lobster"
-                                                    Margin="0,30,0,0"/>
-                                            
+                                            <Image Source="{Binding QR.MediaURL}" 
+                                                   Aspect="AspectFill"
+                                                   Grid.Row="8"/>
+                                            <Label Text="{Binding QR.UserID}" 
+                                                   FontSize="16" 
+                                                   FontAttributes="Italic" 
+                                                   TextColor="Black"
+                                                   FontFamily="Lobster"
+                                                   Grid.Row="9"/>
+
 
                                         </Grid>
                                     </StackLayout>
@@ -174,251 +179,7 @@
                 HorizontalOptions="Center"
                 Grid.Row="2"/>
 
-                    <Label Text="This is for Police"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           FontFamily="Lobsters"
-                           Margin="0,20"
-                           TextColor="Grey"
-                           Grid.Row="3"/>
-
-                    <CarouselView  Grid.Row="4" Loop="False" IndicatorView="QuickReports2" ItemsUpdatingScrollMode="KeepItemsInView">
-                        <CarouselView.ItemTemplate>
-                            <DataTemplate>
-                                <Frame  Grid.Row="2" 
-                                        CornerRadius="10" 
-                                        VerticalOptions="StartAndExpand" 
-                                        BorderColor="Black"
-                                        Margin="10,10">
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnFrameTapped"/>
-                                    </Frame.GestureRecognizers>
-                                    <StackLayout>
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <!-- Content inside your frame -->
-                                            <Label Text="Catgeory Title"
-                                                   Grid.Row="0"
-                                                   HorizontalOptions="Start"
-                                                   TextColor="Black"
-                                                   FontSize="32"
-                                                   FontFamily="Lobsters"
-                                                   FontAttributes="Bold"
-                                                   />
-                                            <Label Text="SubCatgeory Title"
-                                                   Grid.Row="1"
-                                                   HorizontalOptions="Start"
-                                                   TextColor="Black"
-                                                   FontSize="18"
-                                                   FontFamily="Lobsters"
-                                                   FontAttributes="Bold"
-                                                   Margin="0,10,0,0"
-                                                   />
-                                            <Label Text="{Binding Status}"
-                                                   Grid.Row="0"
-                                                   HorizontalOptions="End"
-                                                   TextColor="IndianRed"
-                                                   FontSize="14"
-                                                   FontFamily="Lobsters"
-                                                   FontAttributes="Italic"
-                                                   />
-                                            <Label Text="Quick Reported Date"
-                                                   FontSize="16"
-                                                   FontAttributes="Bold"
-                                                   VerticalOptions="Start"
-                                                   Grid.Row="3"
-                                                   FontFamily="Lobster"
-                                                   Margin="0,30,0,0"
-                                                   />
-                                            <Label Text="{Binding ReportDateTime, StringFormat='Reported on {0:MM/dd/yyyy HH:mm}'}" 
-                                                   FontSize="16"
-                                                   Grid.Row="4"
-                                                   FontAttributes="Italic"
-                                                    />
-                                            <Label Text="Descriptions"
-                                                   FontSize="16"
-                                                   FontAttributes="Bold"
-                                                   VerticalOptions="Start"
-                                                   Grid.Row="5"
-                                                   FontFamily="Lobster"
-                                                   Margin="0,30,0,0"
-                                                   />
-                                            <Label Text="{Binding QRDescription}" 
-                                                   FontSize="16" 
-                                                   FontAttributes="Italic" 
-                                                   TextColor="Black"
-                                                   FontFamily="Lobster"
-                                                   Grid.Row="6"/>
-
-                                            <Label Text="Map"
-                                                   FontSize="16"
-                                                   FontAttributes="Bold"
-                                                   Grid.Row="7"
-                                                   FontFamily="Lobster"
-                                                   Margin="0,30,0,0"/>
-
-                                            <Label  Text="Picture and Videos Uploaded"
-                                                    FontSize="16"
-                                                    FontAttributes="Bold"
-                                                    Grid.Row="10"
-                                                    FontFamily="Lobster"
-                                                    Margin="0,30,0,0"/>
-                                            <Image Source="{Binding MediaURL}" 
-                                                   Aspect="AspectFill"
-                                                   Grid.Row="11"/>
-
-
-                                        </Grid>
-                                    </StackLayout>
-                                </Frame>
-                            </DataTemplate>
-                        </CarouselView.ItemTemplate>
-                    </CarouselView>
-                    <IndicatorView x:Name="QuickReports2"
-                IndicatorColor="#a7a7a7"
-                SelectedIndicatorColor="#cd5c5c"
-                HorizontalOptions="Center"
-                Grid.Row="5"/>
-
-                    <Label Text="This is for Ambulance"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           FontFamily="Lobsters"
-                           Margin="0,20"
-                           TextColor="Grey"
-                           Grid.Row="6"/>
-
-                    <CarouselView  Grid.Row="7" Loop="False" IndicatorView="QuickReports3" ItemsUpdatingScrollMode="KeepItemsInView">
-                        <CarouselView.ItemTemplate>
-                            <DataTemplate>
-                                <Frame  Grid.Row="2" 
-                                        CornerRadius="10" 
-                                        VerticalOptions="StartAndExpand" 
-                                        BorderColor="Black"
-                                        Margin="10,10">
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnFrameTapped"/>
-                                    </Frame.GestureRecognizers>
-                                    <StackLayout>
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <!-- Content inside your frame -->
-                                            <Label Text="Catgeory Title"
-                                                   Grid.Row="0"
-                                                   HorizontalOptions="Start"
-                                                   TextColor="Black"
-                                                   FontSize="32"
-                                                   FontFamily="Lobsters"
-                                                   FontAttributes="Bold"
-                                                   />
-                                            <Label Text="SubCatgeory Title"
-                                                   Grid.Row="1"
-                                                   HorizontalOptions="Start"
-                                                   TextColor="Black"
-                                                   FontSize="18"
-                                                   FontFamily="Lobsters"
-                                                   FontAttributes="Bold"
-                                                   Margin="0,10,0,0"
-                                                   />
-                                            <Label Text="{Binding Status}"
-                                                   Grid.Row="0"
-                                                   HorizontalOptions="End"
-                                                   TextColor="IndianRed"
-                                                   FontSize="14"
-                                                   FontFamily="Lobsters"
-                                                   FontAttributes="Italic"
-                                                   />
-                                            <Label Text="Quick Reported Date"
-                                                   FontSize="16"
-                                                   FontAttributes="Bold"
-                                                   VerticalOptions="Start"
-                                                   Grid.Row="3"
-                                                   FontFamily="Lobster"
-                                                   Margin="0,30,0,0"
-                                                   />
-                                            <Label Text="{Binding ReportDateTime, StringFormat='Reported on {0:MM/dd/yyyy HH:mm}'}" 
-                                                   FontSize="16"
-                                                   Grid.Row="4"
-                                                   FontAttributes="Italic"
-                                                    />
-                                            <Label Text="Descriptions"
-                                                   FontSize="16"
-                                                   FontAttributes="Bold"
-                                                   VerticalOptions="Start"
-                                                   Grid.Row="5"
-                                                   FontFamily="Lobster"
-                                                   Margin="0,30,0,0"
-                                                   />
-                                            <Label Text="{Binding QRDescription}" 
-                                                   FontSize="16" 
-                                                   FontAttributes="Italic" 
-                                                   TextColor="Black"
-                                                   FontFamily="Lobster"
-                                                   Grid.Row="6"/>
-
-                                            <Label Text="Map"
-                                                   FontSize="16"
-                                                   FontAttributes="Bold"
-                                                   Grid.Row="7"
-                                                   FontFamily="Lobster"
-                                                   Margin="0,30,0,0"/>
-
-                                            <Label  Text="Picture and Videos Uploaded"
-                                                    FontSize="16"
-                                                    FontAttributes="Bold"
-                                                    Grid.Row="10"
-                                                    FontFamily="Lobster"
-                                                    Margin="0,30,0,0"/>
-                                            <Image Source="{Binding MediaURL}" 
-                                                   Aspect="AspectFill"
-                                                   Grid.Row="11"/>
-
-
-                                        </Grid>
-                                    </StackLayout>
-                                </Frame>
-                            </DataTemplate>
-                        </CarouselView.ItemTemplate>
-                    </CarouselView>
-                    <IndicatorView x:Name="QuickReports3"
-                IndicatorColor="#a7a7a7"
-                SelectedIndicatorColor="#cd5c5c"
-                HorizontalOptions="Center"
-                Grid.Row="8"/>
+                   
 
 
 
