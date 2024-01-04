@@ -10,7 +10,6 @@ namespace ISafetyVer2.Views;
 public partial class MainPage : ContentPage
 {
     private string userRole;
-    private List<QuickReport> QR { get; set; } = new List<QuickReport>();
 	public MainPage()
 	{
         InitializeComponent();
@@ -19,9 +18,9 @@ public partial class MainPage : ContentPage
         panGesture.PanUpdated += OnPanUpdated;
         SwipeButton.GestureRecognizers.Add(panGesture);
 
-        // BindingContext = new MainPageViewModel();
-        GetAllQuickReport();
-    }
+        BindingContext = new MainPageViewModel();
+        GetAndMapAllQuickReport();
+        }
 
     protected override void OnAppearing()
     {
@@ -161,10 +160,10 @@ public partial class MainPage : ContentPage
         });
     }
 
-    private async void GetAllQuickReport()
+    private async void GetAndMapAllQuickReport()
     {
-        QR = await new FirebaseHelper().GetAllQuickReport();
-
+     await ((MainPageViewModel)BindingContext).GetAllQuickReport();
+        MapAddLocation();
     }
 
     private void MapAddLocation()
@@ -186,11 +185,8 @@ public partial class MainPage : ContentPage
             map.Pins.Add(new Pin
             {
                 Label = "Location",
-                Location = new Location
-                {
-                    Latitude = latitude,
-                    Longitude = longitude
-                }
+                Location = new Location(latitude, longitude)
+
             });
         }
         else

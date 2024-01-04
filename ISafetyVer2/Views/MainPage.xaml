@@ -5,7 +5,8 @@
              x:Class="ISafetyVer2.Views.MainPage"
              Title="MainPage"
              Shell.NavBarIsVisible="False"
-             NavigationPage.HasNavigationBar="false">
+             NavigationPage.HasNavigationBar="false"
+             xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials">
 
     <ScrollView BackgroundColor="WhiteSmoke">
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Center" Padding="20,20,20,0">
@@ -126,6 +127,20 @@
                            IsShowingUser="True"
                            Grid.ColumnSpan="2" Grid.Row="3" HeightRequest="250" Margin="0,20"
                            >
+                    <x:Arguments>
+                        <MapSpan>
+                            <x:Arguments>
+                                <sensors:Location>
+                                    <x:Arguments>
+                                        <x:Double>2.3411753</x:Double>
+                                        <x:Double>111.8433761</x:Double>
+                                    </x:Arguments>
+                                </sensors:Location>
+                                <x:Double>0.01</x:Double>
+                                <x:Double>0.01</x:Double>
+                            </x:Arguments>
+                        </MapSpan>
+                    </x:Arguments>
                 </maps:Map>
                 
 

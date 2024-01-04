@@ -31,18 +31,17 @@ namespace ISafetyVer2.ViewModels
 
         public MainPageViewModel()
         {
-            GetQuickReport();
         }
-
-        private async void GetQuickReport()
+        public async Task GetAllQuickReport()
         {
             List<QuickReport> reports = await new FirebaseHelper().GetAllQuickReport();
-            
+            QR = new ObservableCollection<QuickReport>();
             foreach (QuickReport report in reports)
             {
                 QR.Add(report);
             }
         }
+
 
         private void RaisePropertyChanged(string propertyName)
         {
