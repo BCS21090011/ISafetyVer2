@@ -10,7 +10,18 @@ namespace ISafetyVer2.Views;
 public partial class MainPage : ContentPage
 {
     private string userRole;
-	public MainPage()
+
+    List<QuickReport> qR = new List<QuickReport>();
+    List<QuickReport> QR
+    {
+        get { return qR; }
+        set
+        {
+            qR = value;
+            MapAddLocation();
+        }
+    }
+    public MainPage()
 	{
         InitializeComponent();
 
@@ -18,20 +29,28 @@ public partial class MainPage : ContentPage
         panGesture.PanUpdated += OnPanUpdated;
         SwipeButton.GestureRecognizers.Add(panGesture);
 
-        BindingContext = new MainPageViewModel();
-        GetAndMapAllQuickReport();
-        }
+    }
 
+
+    private async void GetAllQuickReport()
+    {
+        List<QuickReport> newQR = await new FirebaseHelper().GetAllQuickReport();
+
+        QR = newQR;
+
+    }
     protected override void OnAppearing()
     {
         base.OnAppearing();
 
+
         userRole = Preferences.Get("UserRole", "Default");
-        
         if (userRole == "Admin")
         {
             Navigation.PushAsync(new Admin());
         }
+        GetAllQuickReport();
+        
     }
 
     private void CategoriesBtnOnClick(object obj, EventArgs e)
@@ -154,31 +173,27 @@ public partial class MainPage : ContentPage
 
             if (PhoneDialer.Default.IsSupported)
             {
-                PhoneDialer.Default.Open("019-650-2592");
+                PhoneDialer.Default.Open("999");
             }
 
         });
     }
 
-    private async void GetAndMapAllQuickReport()
-    {
-     await ((MainPageViewModel)BindingContext).GetAllQuickReport();
-        MapAddLocation();
-    }
-
+   
     private void MapAddLocation()
-    {
-        foreach (QuickReport report in ((MainPageViewModel)BindingContext).QR)
-        {
-            MapAddLocation(report.Latitude, report.Longitude, report.Radius);
-        }
-    }
 
-    private void MapAddLocation(double latitude, double longitude, double radius)
     {
         // Clear pins and circles:
         map.Pins.Clear();
         map.MapElements.Clear();
+        foreach (QuickReport report in QR) 
+        {
+            MapAddLocation(report.Latitude, report.Longitude, report.Radius);
+        }
+    }
+    private void MapAddLocation(double latitude, double longitude, double radius)
+    {
+       
 
         if (radius == 0)
         {
