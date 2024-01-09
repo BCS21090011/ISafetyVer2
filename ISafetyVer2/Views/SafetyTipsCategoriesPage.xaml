@@ -7,21 +7,21 @@
 
     <ScrollView >
         <Grid>
-            <Grid.Background>
-                <LinearGradientBrush >
-                    <GradientStop Color="#f7b5ff"
-                          Offset="0.2" />
-                    <GradientStop Color="#ce6aff"
-                          Offset="0.5" />
-                </LinearGradientBrush>
-            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="100" />
-                <RowDefinition Height="700" />
+                <RowDefinition Height="900" />
             </Grid.RowDefinitions>
 
-
-            <ImageButton Source="backwhite.png" 
+            <Grid Grid.Row="0">
+                <Grid.Background>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#f7b5ff"
+                          Offset="0.2" />
+                        <GradientStop Color="#ce6aff"
+                          Offset="0.5" />
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <ImageButton Source="backwhite.png" 
                          HeightRequest="25" 
                          WidthRequest="25" 
                          HorizontalOptions="Start"
@@ -29,9 +29,7 @@
                          Margin="20,15,0,0"
                          Clicked="Backclickcatpage" 
                          Grid.Row="0"/>
-
-
-            <Label HorizontalOptions="Center"  
+                <Label HorizontalOptions="Center"  
                    VerticalOptions="Center" 
                    Margin="10,10,0,0"
                    Text="Safety Tips" 
@@ -40,9 +38,9 @@
                    FontSize="25" 
                    TextColor="White" 
                    Grid.Row="0"/>
-            
+            </Grid>
             <CollectionView ItemsSource="{Binding Categories}" 
-                            Grid.Row="2" 
+                            Grid.Row="1" 
                             Margin="0,20,0,20">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -50,7 +48,7 @@
                                    HeightRequest="100" 
                                    WidthRequest="350"  
                                    Margin="10,10" 
-                                   BorderColor="White" 
+                                   BorderColor="Black" 
                                    Opacity="1">
                                 <Grid >
                                     <Grid.RowDefinitions>

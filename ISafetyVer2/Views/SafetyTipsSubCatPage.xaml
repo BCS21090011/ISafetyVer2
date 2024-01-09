@@ -6,7 +6,12 @@
              Shell.NavBarIsVisible="False">
     <ScrollView>
     <VerticalStackLayout>
-        <Grid >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="900"/>
+                </Grid.RowDefinitions>
+        <Grid  Grid.Row="0">
             <Grid.Background>
                 <LinearGradientBrush >
                     <GradientStop Color="#f7b5ff"
@@ -37,7 +42,7 @@
 
         
         <CollectionView x:Name="SubCategoriesListView"  
-                        BackgroundColor="WhiteSmoke">
+                        BackgroundColor="WhiteSmoke" Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="20">
@@ -62,7 +67,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-           
+            </Grid>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

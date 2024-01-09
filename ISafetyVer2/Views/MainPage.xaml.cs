@@ -85,7 +85,7 @@ public partial class MainPage : ContentPage
     {
         Device.BeginInvokeOnMainThread(() =>
         {
-            CountdownLabel.Text = "10"; // Start countdown from 3 seconds
+            CountdownLabel.Text = "5"; // Start countdown from 3 seconds
             CountdownLabel.IsVisible = true;
         });
         holdTimer.Start();

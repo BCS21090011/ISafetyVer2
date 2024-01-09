@@ -37,7 +37,7 @@ namespace ISafetyVer2.ViewModels
                 var categories = await firebaseHelper.GetCategoryByAuthorityID(Preferences.Get("UserID", "NoUser"));
 
                 // List<Task> allTasks = new List<Task>();
-                App.Current.MainPage.DisplayAlert("howard", $"{categories.Count}", "OK");
+                //App.Current.MainPage.DisplayAlert("howard", $"{categories.Count}", "OK");
                 foreach (var category in categories)
                 {
                     /*QuickReports.Add(new QRCatDetailed

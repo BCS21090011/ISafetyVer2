@@ -11,7 +11,7 @@
     <ScrollView BackgroundColor="WhiteSmoke">
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Center" Padding="20,20,20,0">
             <Label Text="Welcome to ISafety"    HorizontalOptions="Start" FontSize="Large" 
-               FontAttributes="Bold" Margin="5,10,0,30" FontFamily="Lobster"/>
+               FontAttributes="Bold" Margin="5,10,0,20" FontFamily="Lobster"/>
 
             <Grid x:Name="SwipeArea" >
                 <Grid.RowDefinitions>
@@ -92,7 +92,7 @@
                        />
                 <Label Grid.Row="1" Text="For non-emergency 
                   only" HorizontalOptions="Center" TextColor="White"
-                 Margin="18,40,0,0" FontSize="12"  FontAttributes="Bold"/>
+                 Margin="18,40,0,10" FontSize="12"  FontAttributes="Bold"/>
                 <Image Grid.Row="0" Source="report.png" HorizontalOptions="Center" 
                HeightRequest="150" WidthRequest="150" Margin="0,0,0,0"/>
 
@@ -107,19 +107,15 @@
 
 
 
-                <Label Grid.Row="1" Grid.Column="1" Text=" Chats" HorizontalOptions="Center" 
-                   VerticalOptions="Center" Margin="60,0,30,30" FontSize="20" 
+                <Label Grid.Row="1" Grid.Column="1" Text=" More functions to come" HorizontalOptions="Center" 
+                   VerticalOptions="Center" Margin="0,0,0,0" FontSize="15" 
                        FontAttributes="Bold" FontFamily="Lobster" TextColor="White"/>
 
-                <Label Grid.Row="1" Grid.Column="1" Text="Communicate with&#10;Authorities " 
-                       HorizontalOptions="End" Margin="0,30,0,0" 
-                       FontSize="12"  FontAttributes="Bold" VerticalOptions="Center" TextColor="White" />
-                <Image Grid.Column="1" Grid.Row="1" Source="chats.png" HorizontalOptions="Start" 
-               HeightRequest="100" WidthRequest="50" Margin="20,0,0,0"/>
+                
 
 
                 <Label Grid.Row="2" Grid.ColumnSpan="2" Text="Safety Issues Nearby"  TextColor="black" 
-            HorizontalOptions="Start" FontSize="Large" FontAttributes="Bold" Margin="0,30,0,0" FontFamily="Lobster"/>
+            HorizontalOptions="Start" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0" FontFamily="Lobster"/>
 
                 
                 <maps:Map  x:Name="map" MapType="Hybrid"  

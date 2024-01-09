@@ -26,9 +26,9 @@
 
             <ImageButton Source="backwhite.png" HeightRequest="25" 
                          WidthRequest="25" HorizontalOptions="Start"
-                         VerticalOptions="Start" Margin="20,15,0,0"
+                         VerticalOptions="Start" Margin="20,25,0,0"
                          Clicked="Backclick" Grid.Row="0"/>
-            <Label HorizontalOptions="Center"  VerticalOptions="Start" Margin="10,10,0,0"
+            <Label HorizontalOptions="Center"  VerticalOptions="Start" Margin="10,20,0,0"
                    Text="Quick Report" FontAttributes="Bold" FontFamily="Lobster"
                    FontSize="25" TextColor="White" Grid.Row="0"/>
             <Frame Grid.Row="1" BackgroundColor="WhiteSmoke" WidthRequest="500"
@@ -38,13 +38,13 @@
                            HorizontalOptions="CenterAndExpand" CornerRadius="20"
                            Margin="0,0,0,30"/>
             <Label Grid.Row="1" HorizontalOptions="Start"
-                   Text="Annonymouse?" TextColor="Black" FontSize="18"
+                   Text="Anonymous?" TextColor="Black" FontSize="18"
                    FontFamily="Lobster" Margin="60,0,0,0" />
 
 
             <CheckBox Grid.Row="1" HorizontalOptions="Center"
                      HeightRequest="40" CheckedChanged="AnonymousCheckBoxOnChange"
-                    Margin="230,0,0,30"/>
+                    Margin="230,0,0,30" Color="#ffc800"/>
 
 
             <Frame

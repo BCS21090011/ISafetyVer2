@@ -174,22 +174,16 @@
                 <!-- Chat-->
                 <Label Grid.Row="1" 
                        Grid.Column="1" 
-                       Text="Chat" 
+                       Text="More function to come" 
                        HorizontalOptions="Center" 
                        VerticalOptions="Center"
-                       Margin="70,0,0,20" 
-                       FontSize="20"   
+                       Margin="0,0,0,20" 
+                       FontSize="16"   
                        TextColor="White"  
                        FontAttributes="Bold" 
                        FontFamily="Lobster"
                        />
-                <Image Grid.Row="1"  
-                       Grid.Column="1" 
-                       Source="chats.png" 
-                       HorizontalOptions="Start" 
-                       VerticalOptions="Center"
-                       HeightRequest="50" 
-                       Margin="20,0,0,20" />
+                
 
                 <!-- More-->
                 <Label Text="More functions"  

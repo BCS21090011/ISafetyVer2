@@ -54,19 +54,12 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     
-                    <Label Text="This if for Hospital"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           FontFamily="Lobsters"
-                           Margin="0,20"
-                           TextColor="Grey"
-                           Grid.Row="0"/>
-
+                   
                     <CarouselView   Loop="False"  ItemsSource="{Binding QuickReports}"
                                    IndicatorView="QuickReports1" ItemsUpdatingScrollMode="KeepItemsInView">
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
-                                <Frame  Grid.Row="1" 
+                                <Frame  Grid.Row="0" 
                                         CornerRadius="10" 
                                         VerticalOptions="StartAndExpand" 
                                         BorderColor="Black"
@@ -159,7 +152,7 @@
                                             <Image Source="{Binding QR.MediaURL}" 
                                                    Aspect="AspectFill"
                                                    Grid.Row="8"/>
-                                            <Label Text="{Binding QR.UserID}" 
+                                            <Label Text="{Binding QR.UserName}" 
                                                    FontSize="16" 
                                                    FontAttributes="Italic" 
                                                    TextColor="Black"
@@ -177,7 +170,7 @@
                 IndicatorColor="#a7a7a7"
                 SelectedIndicatorColor="#cd5c5c"
                 HorizontalOptions="Center"
-                Grid.Row="2"/>
+                Grid.Row="1"/>
 
                    
 
